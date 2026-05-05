@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>DataLens — Industry Data Analysis Guide</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --bg-card: #ffffff;
+      --bg-surface: #f3f2ee;
+      --bg-accent: #eceae3;
+      --text-primary: #1a1917;
+      --text-secondary: #6b6860;
+      --text-tertiary: #a09e99;
+      --border: rgba(26,25,23,0.1);
+      --border-strong: rgba(26,25,23,0.2);
+      --accent: #185FA5;
+      --accent-light: #E6F1FB;
+      --ff-display: 'DM Serif Display', serif;
+      --ff-body: 'DM Sans', sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--ff-body);
+      background: var(--bg);
+      color: var(--text-primary);
+      font-size: 15px;
+      line-height: 1.6;
+      min-height: 100vh;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(250,250,248,0.92);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 2rem;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo {
+      font-family: var(--ff-display);
+      font-size: 20px;
+      color: var(--text-primary);
+      text-decoration: none;
+      letter-spacing: -0.01em;
+    }
+    .nav-logo span { color: var(--accent); }
+    .nav-tag {
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.07em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+    }
+
+    /* ── HERO ── */
+    .hero {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 5rem 2rem 3rem;
+    }
+    .hero-eyebrow {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 500;
+      letter-spacing: 0.09em;
+      text-transform: uppercase;
+      color: var(--accent);
+      margin-bottom: 1.25rem;
+    }
+    .hero-eyebrow::before {
+      content: '';
+      display: block;
+      width: 20px;
+      height: 1px;
+      background: var(--accent);
+    }
+    .hero h1 {
+      font-family: var(--ff-display);
+      font-size: clamp(36px, 6vw, 58px);
+      font-weight: 400;
+      line-height: 1.08;
+      letter-spacing: -0.02em;
+      color: var(--text-primary);
+      margin-bottom: 1.25rem;
+    }
+    .hero h1 em {
+      font-style: italic;
+      color: var(--accent);
+    }
+    .hero-sub {
+      font-size: 16px;
+      color: var(--text-secondary);
+      max-width: 520px;
+      line-height: 1.65;
+    }
+
+    /* ── TABS ── */
+    .tabs-section {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 0 2rem 2rem;
+    }
+    .tabs-wrap {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 2rem;
+    }
+    .tab-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      border: 0.5px solid var(--border-strong);
+      background: var(--bg-card);
+      color: var(--text-secondary);
+      font-family: var(--ff-body);
+      font-size: 13px;
+      font-weight: 400;
+      cursor: pointer;
+      transition: all 0.18s ease;
+    }
+    .tab-btn:hover {
+      border-color: var(--accent);
+      color: var(--text-primary);
+      background: var(--bg-surface);
+    }
+    .tab-btn.active {
+      background: var(--accent);
+      color: #fff;
+      border-color: var(--accent);
+    }
+    .tab-dot {
+      width: 7px; height: 7px;
+      border-radius: 50%;
+      background: currentColor;
+      opacity: 0.7;
+      flex-shrink: 0;
+    }
+
+    /* ── PANEL ── */
+    .panel {
+      background: var(--bg-card);
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg);
+      overflow: hidden;
+      animation: fadeSlide 0.22s ease;
+    }
+    @keyframes fadeSlide {
+      from { opacity: 0; transform: translateY(6px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+
+    .panel-header {
+      padding: 1.75rem 2rem 1.25rem;
+      border-bottom: 0.5px solid var(--border);
+      background: var(--bg-surface);
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+    .panel-icon {
+      width: 44px; height: 44px;
+      border-radius: var(--radius-sm);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 20px;
+      flex-shrink: 0;
+      margin-top: 2px;
+    }
+    .panel-title {
+      font-family: var(--ff-display);
+      font-size: 24px;
+      font-weight: 400;
+      color: var(--text-primary);
+      margin-bottom: 4px;
+    }
+    .panel-desc {
+      font-size: 14px;
+      color: var(--text-secondary);
+      line-height: 1.55;
+      max-width: 600px;
+    }
+
+    /* ── METHODS GRID ── */
+    .methods-section { padding: 1.5rem 2rem; border-bottom: 0.5px solid var(--border); }
+    .section-label {
+      font-size: 10px;
+      font-weight: 500;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--text-tertiary);
+      margin-bottom: 1rem;
+    }
+    .methods-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 8px;
+    }
+    .method-card {
+      padding: 1rem 1.1rem;
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--bg);
+      transition: background 0.15s, border-color 0.15s;
+      cursor: default;
+    }
+    .method-card:hover {
+      background: var(--bg-accent);
+      border-color: var(--border-strong);
+    }
+    .method-name {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-primary);
+      margin-bottom: 5px;
+      display: flex;
+      align-items: center;
+      gap: 7px;
+    }
+    .method-name::before {
+      content: '';
+      display: block;
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--ind-color, #185FA5);
+      flex-shrink: 0;
+    }
+    .method-desc {
+      font-size: 12px;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* ── TOOLS ── */
+    .tools-section { padding: 1.5rem 2rem; border-bottom: 0.5px solid var(--border); }
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(175px, 1fr));
+      gap: 8px;
+    }
+    .tool-card {
+      padding: 12px 14px;
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--bg);
+      transition: background 0.15s;
+    }
+    .tool-card:hover { background: var(--bg-accent); }
+    .tool-badge {
+      display: inline-block;
+      font-size: 10px;
+      font-weight: 500;
+      padding: 2px 7px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+    .tool-name { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+    .tool-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.45; }
+
+    /* ── DATASETS ── */
+    .datasets-section { padding: 1.5rem 2rem; border-bottom: 0.5px solid var(--border); }
+    .dataset-row {
+      display: flex;
+      gap: 12px;
+      padding: 10px 0;
+      border-bottom: 0.5px solid var(--border);
+    }
+    .dataset-row:last-child { border-bottom: none; }
+    .ds-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
+    .ds-name { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+    .ds-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.45; }
+
+    /* ── CAREERS ── */
+    .careers-section { padding: 1.5rem 2rem; }
+    .careers-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 8px;
+    }
+    .career-card {
+      padding: 14px 16px;
+      border: 0.5px solid var(--border);
+      border-radius: var(--radius-md);
+      background: var(--bg);
+      transition: background 0.15s;
+    }
+    .career-card:hover { background: var(--bg-accent); }
+    .career-title { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+    .career-salary { font-size: 12px; font-weight: 500; margin-bottom: 6px; }
+    .career-skills { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+
+    /* ── FOOTER ── */
+    footer {
+      max-width: 860px;
+      margin: 3rem auto 0;
+      padding: 2rem 2rem 3rem;
+      border-top: 0.5px solid var(--border);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      flex-wrap: wrap;
+      gap: 1rem;
+    }
+    .footer-logo {
+      font-family: var(--ff-display);
+      font-size: 18px;
+      color: var(--text-primary);
+    }
+    .footer-logo span { color: var(--accent); }
+    .footer-note { font-size: 12px; color: var(--text-tertiary); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 600px) {
+      .hero { padding: 3rem 1.25rem 2rem; }
+      .tabs-section { padding: 0 1.25rem 1.5rem; }
+      .panel-header { flex-direction: column; gap: 0.75rem; padding: 1.25rem; }
+      .methods-section, .tools-section, .datasets-section, .careers-section { padding: 1.25rem; }
+      footer { padding: 1.5rem 1.25rem 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="#">Data<span>Lens</span></a>
+  <span class="nav-tag">Industry Analysis Guide</span>
+</nav>
+
+<section class="hero">
+  <div class="hero-eyebrow">Data Analysis Guide</div>
+  <h1>How is data analyzed<br>across <em>industries?</em></h1>
+  <p class="hero-sub">Select an industry to explore the key analytical methods, tools, datasets, and career paths used by data professionals in that field.</p>
+</section>
+
+<section class="tabs-section">
+  <div class="tabs-wrap" id="tabs-wrap"></div>
+  <div id="panel-root"></div>
+</section>
+
+<footer>
+  <div class="footer-logo">Data<span>Lens</span></div>
+  <div class="footer-note">A reference guide to data analysis across industries.</div>
+</footer>
+
+<script>
+const INDUSTRIES = [
+  {
+    id: "finance",
+    label: "Finance",
+    color: "#185FA5",
+    colorLight: "#E6F1FB",
+    colorText: "#0C447C",
+    salaryColor: "#0F6E56",
+    iconBg: "#E6F1FB",
+    icon: "◈",
+    title: "Financial Data Analysis",
+    desc: "From risk modeling to algorithmic trading, financial data analysis drives decisions across banking, investment, insurance, and fintech.",
+    methods: [
+      { name: "Time-series forecasting", desc: "Predict stock prices, revenue, or interest rates using ARIMA, LSTM, or Prophet models on historical data." },
+      { name: "Risk & portfolio analysis", desc: "Measure value-at-risk (VaR), Sharpe ratio, and portfolio volatility to balance return against exposure." },
+      { name: "Fraud detection", desc: "Use anomaly detection and classification models to flag suspicious transactions in real time." },
+      { name: "Credit scoring", desc: "Build logistic regression or gradient-boosted models to predict default probability from customer data." },
+      { name: "Sentiment analysis", desc: "Mine earnings calls, news, and social media to gauge market sentiment and predict price movements." },
+      { name: "Financial statement analysis", desc: "Calculate ratios like P/E, EBITDA, and liquidity metrics to assess company health." },
+    ],
+    tools: [
+      { badge: "Language", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "Python", desc: "pandas, NumPy, scikit-learn, PyPortfolioOpt for modeling and analysis." },
+      { badge: "Language", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "R", desc: "Strong for time-series (quantmod, forecast) and statistical modeling." },
+      { badge: "Platform", badgeBg: "#E1F5EE", badgeText: "#085041", name: "Bloomberg Terminal", desc: "Industry-standard for real-time market data, pricing, and analytics." },
+      { badge: "Platform", badgeBg: "#E1F5EE", badgeText: "#085041", name: "Refinitiv / LSEG", desc: "Alternative to Bloomberg with programmatic API access via Eikon." },
+      { badge: "BI & Viz", badgeBg: "#FAEEDA", badgeText: "#633806", name: "Tableau / Power BI", desc: "Executive dashboards, P&L reporting, and regulatory visualization." },
+      { badge: "Modeling", badgeBg: "#FAEEDA", badgeText: "#633806", name: "Excel / VBA", desc: "Still dominant in banking for DCF models, LBO templates, and financials." },
+      { badge: "Database", badgeBg: "#EEEDFE", badgeText: "#3C3489", name: "SQL", desc: "Query trade data, transaction records, and risk exposure across warehouses." },
+      { badge: "Cloud", badgeBg: "#EEEDFE", badgeText: "#3C3489", name: "AWS / GCP / Azure", desc: "Scalable model training, real-time pipelines, and regulatory data storage." },
+    ],
+    datasets: [
+      { name: "Market price & tick data", desc: "OHLCV (open, high, low, close, volume) for equities, FX, and commodities. Sources: Bloomberg, Quandl, Yahoo Finance API." },
+      { name: "Financial statements (SEC / EDGAR)", desc: "10-K, 10-Q, 8-K filings used for fundamental analysis, earnings modeling, and ratio analysis." },
+      { name: "Credit & loan data", desc: "Consumer and commercial loan performance from bureaus (Experian, Equifax, TransUnion) for credit risk models." },
+      { name: "Transaction & payment data", desc: "Card transaction streams, ACH records, and wire transfers — used for fraud detection and AML." },
+      { name: "Macroeconomic indicators", desc: "GDP, CPI, unemployment, interest rates from FRED (Federal Reserve), BLS, and central bank APIs." },
+      { name: "Alternative data", desc: "Satellite imagery, credit card spend, web scrapes, job postings — used by hedge funds for informational edge." },
+    ],
+    careers: [
+      { title: "Quantitative analyst (Quant)", salary: "$130k – $300k+", desc: "Python/C++, stochastic calculus, derivatives pricing. Found at: hedge funds, investment banks." },
+      { title: "Financial data analyst", salary: "$75k – $130k", desc: "SQL, Excel, Python, FP&A, reporting. Found at: corporates, banks, accounting firms." },
+      { title: "Risk analyst", salary: "$85k – $150k", desc: "VaR, Monte Carlo, Basel regulations, R or Python. Found at: banks, insurance, asset managers." },
+      { title: "Fraud & AML analyst", salary: "$80k – $140k", desc: "Anomaly detection, graph analytics, SQL. Found at: fintechs, payment processors, banks." },
+      { title: "Algorithmic trader", salary: "$120k – $500k+", desc: "C++/Python, market microstructure, backtesting. Found at: prop trading firms, HFT shops." },
+      { title: "Credit risk modeler", salary: "$90k – $160k", desc: "Logistic regression, ML, IFRS 9/CECL, SAS or Python. Found at: retail banks, credit card firms." },
+    ],
+  },
+  {
+    id: "healthcare",
+    label: "Healthcare",
+    color: "#0F6E56",
+    colorLight: "#E1F5EE",
+    colorText: "#085041",
+    salaryColor: "#185FA5",
+    iconBg: "#E1F5EE",
+    icon: "◎",
+    title: "Healthcare Data Analysis",
+    desc: "Clinical, operational, and genomic data help improve patient outcomes, optimize care delivery, and accelerate drug discovery.",
+    methods: [
+      { name: "Survival analysis", desc: "Estimate time-to-event outcomes (mortality, remission) using Kaplan-Meier curves and Cox regression." },
+      { name: "Clinical trial analysis", desc: "Apply A/B testing, randomization checks, and outcome modeling to evaluate treatment efficacy." },
+      { name: "Predictive readmission modeling", desc: "Train classifiers on EHR data to identify patients at risk of hospital readmission within 30 days." },
+      { name: "Genomic data analysis", desc: "Analyze sequencing data with bioinformatics tools (DESeq2, GWAS) to find gene-disease associations." },
+      { name: "Medical imaging (computer vision)", desc: "Use CNNs to detect tumors, fractures, or retinal disease in X-rays, MRIs, and CT scans." },
+      { name: "Epidemiological modeling", desc: "SIR/SEIR models and geospatial analysis to track disease spread and evaluate public health interventions." },
+    ],
+    tools: [
+      { badge: "Language", badgeBg: "#E1F5EE", badgeText: "#085041", name: "Python", desc: "lifelines, scikit-survival, pydicom for clinical and imaging workflows." },
+      { badge: "Language", badgeBg: "#E1F5EE", badgeText: "#085041", name: "R / Bioconductor", desc: "DESeq2, survival, ggplot2 — dominant in academic and pharma research." },
+      { badge: "Platform", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "Epic / FHIR APIs", desc: "Standard EHR system and interoperability framework for clinical data." },
+      { badge: "Platform", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "REDCap", desc: "Widely used for clinical trial data collection and management." },
+      { badge: "Imaging", badgeBg: "#FAEEDA", badgeText: "#633806", name: "3D Slicer / ITK", desc: "Open-source platforms for medical image analysis and segmentation." },
+      { badge: "Cloud", badgeBg: "#FAEEDA", badgeText: "#633806", name: "AWS HealthLake", desc: "HIPAA-compliant storage and analytics for healthcare data at scale." },
+      { badge: "BI", badgeBg: "#EEEDFE", badgeText: "#3C3489", name: "Tableau / Qlik", desc: "Hospital operations dashboards, quality metrics, and population health." },
+      { badge: "AI", badgeBg: "#EEEDFE", badgeText: "#3C3489", name: "PyTorch / TensorFlow", desc: "Deep learning for medical imaging classification and segmentation models." },
+    ],
+    datasets: [
+      { name: "Electronic Health Records (EHR)", desc: "Patient demographics, diagnoses, medications, vitals, and lab results — often accessed via FHIR or HL7." },
+      { name: "Claims & billing data", desc: "Insurance claims with procedure codes (CPT, ICD-10) used for cost analysis and population health studies." },
+      { name: "Clinical trial data (ClinicalTrials.gov)", desc: "Structured trial results including endpoints, adverse events, and patient cohort details." },
+      { name: "Genomic & biobank data (UK Biobank, TCGA)", desc: "Whole-genome sequencing, SNP arrays, and phenotype data for genomic association studies." },
+      { name: "Medical imaging datasets (MIMIC-CXR, ChestX-ray14)", desc: "Annotated radiology images used to train and benchmark diagnostic AI models." },
+      { name: "Mortality & registry data", desc: "CDC, CMS, and hospital registry data for epidemiological research and outcome measurement." },
+    ],
+    careers: [
+      { title: "Clinical data analyst", salary: "$70k – $110k", desc: "EHR queries, FHIR, SQL, Tableau. Found at: hospitals, health systems, ACOs." },
+      { title: "Biostatistician", salary: "$90k – $150k", desc: "Clinical trial design, SAS/R, FDA submissions. Found at: pharma, CROs, academia." },
+      { title: "Health informatics specialist", salary: "$80k – $130k", desc: "HL7/FHIR, interoperability, data governance. Found at: health IT vendors, hospitals." },
+      { title: "Medical imaging AI engineer", salary: "$110k – $180k", desc: "PyTorch, DICOM, CNNs. Found at: radiology AI startups, MedTech companies." },
+      { title: "Epidemiologist / data scientist", salary: "$75k – $130k", desc: "R/Python, GIS, causal inference. Found at: public health agencies, CDC, academia." },
+      { title: "Genomic data scientist", salary: "$100k – $170k", desc: "Bioinformatics pipelines, Bioconductor, cloud HPC. Found at: biotech, pharma, research." },
+    ],
+  },
+  {
+    id: "energy",
+    label: "Energy",
+    color: "#BA7517",
+    colorLight: "#FAEEDA",
+    colorText: "#633806",
+    salaryColor: "#185FA5",
+    iconBg: "#FAEEDA",
+    icon: "◇",
+    title: "Energy Data Analysis",
+    desc: "From grid optimization to renewable forecasting, energy analytics powers smarter infrastructure and sustainability decisions.",
+    methods: [
+      { name: "Demand forecasting", desc: "Predict electricity or gas consumption using weather data, time patterns, and regression or ML models." },
+      { name: "Renewable energy forecasting", desc: "Forecast solar irradiance and wind speeds to optimize grid scheduling and storage dispatch." },
+      { name: "Anomaly detection in grid data", desc: "Identify equipment faults or outages early using sensor telemetry and unsupervised learning." },
+      { name: "Energy efficiency analysis", desc: "Benchmark buildings or industrial plants against baselines to find optimization opportunities." },
+      { name: "Geospatial site analysis", desc: "Use GIS and terrain data to identify optimal locations for wind farms, pipelines, or substations." },
+      { name: "Carbon footprint modeling", desc: "Track Scope 1, 2, and 3 emissions using activity data and LCA frameworks for ESG reporting." },
+    ],
+    tools: [
+      { badge: "Language", badgeBg: "#FAEEDA", badgeText: "#633806", name: "Python", desc: "pvlib, windpowerlib, PyPSA for energy systems modeling and forecasting." },
+      { badge: "Simulation", badgeBg: "#FAEEDA", badgeText: "#633806", name: "MATLAB / Simulink", desc: "Power systems simulation, grid stability, and control system modeling." },
+      { badge: "GIS", badgeBg: "#E1F5EE", badgeText: "#085041", name: "ArcGIS / QGIS", desc: "Geospatial site selection, resource mapping, and infrastructure planning." },
+      { badge: "Platform", badgeBg: "#E1F5EE", badgeText: "#085041", name: "OSIsoft PI / AVEVA", desc: "Historian platforms for ingesting and analyzing real-time sensor/SCADA data." },
+      { badge: "Cloud", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "Azure IoT / AWS IoT", desc: "Edge-to-cloud pipelines for smart meter and grid sensor data at scale." },
+      { badge: "BI", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "Power BI / Grafana", desc: "Operational dashboards for grid performance, renewable output, and KPIs." },
+      { badge: "Modeling", badgeBg: "#EEEDFE", badgeText: "#3C3489", name: "HOMER / SAM", desc: "NREL tools for modeling distributed energy resources and grid feasibility." },
+      { badge: "Database", badgeBg: "#EEEDFE", badgeText: "#3C3489", name: "TimescaleDB / InfluxDB", desc: "Time-series databases built for high-frequency sensor and metering data." },
+    ],
+    datasets: [
+      { name: "Smart meter & AMI data", desc: "High-frequency electricity consumption readings from residential and commercial meters for demand analysis." },
+      { name: "SCADA & sensor telemetry", desc: "Real-time operational data from turbines, transformers, and pipeline infrastructure for monitoring and control." },
+      { name: "Weather & climate data (NOAA, ERA5)", desc: "Temperature, wind speed, solar irradiance, and precipitation data for renewable forecasting models." },
+      { name: "EIA energy datasets", desc: "U.S. Energy Information Administration data on production, consumption, prices, and reserves by fuel type." },
+      { name: "Emissions & carbon data (EPA, GHG Protocol)", desc: "Reported emissions inventories and emission factors for carbon accounting and Scope 3 calculations." },
+      { name: "Grid topology & market data (FERC, ISO)", desc: "Transmission network data, LMP prices, and market clearing data from regional grid operators." },
+    ],
+    careers: [
+      { title: "Energy data analyst", salary: "$70k – $115k", desc: "SQL, Python, Tableau, SCADA. Found at: utilities, energy retailers, grid operators." },
+      { title: "Power systems engineer / analyst", desc: "MATLAB, load flow analysis, PSSE. Found at: utilities, ISOs, engineering consultancies.", salary: "$90k – $150k" },
+      { title: "Renewable energy analyst", salary: "$80k – $130k", desc: "GIS, pvlib/windpowerlib, financial modeling. Found at: developers, IPPs, banks." },
+      { title: "Carbon & ESG analyst", salary: "$75k – $125k", desc: "GHG accounting, LCA, sustainability reporting. Found at: corporates, consultancies." },
+      { title: "Energy data scientist", salary: "$100k – $160k", desc: "Forecasting, anomaly detection, Python/ML. Found at: utilities, smart grid startups." },
+      { title: "Grid / market analyst", salary: "$85k – $145k", desc: "LMP analysis, market modeling, ISO rules. Found at: energy trading desks, ISOs, FERC." },
+    ],
+  },
+  {
+    id: "retail",
+    label: "Retail",
+    color: "#993C1D",
+    colorLight: "#FAECE7",
+    colorText: "#712B13",
+    salaryColor: "#0F6E56",
+    iconBg: "#FAECE7",
+    icon: "◉",
+    title: "Retail & E-commerce Analysis",
+    desc: "Customer behavior, inventory, and pricing data help retailers boost conversions, reduce waste, and personalize the shopping experience.",
+    methods: [
+      { name: "Customer segmentation (RFM)", desc: "Cluster customers by Recency, Frequency, and Monetary value to target marketing efforts precisely." },
+      { name: "Market basket analysis", desc: "Use association rules (Apriori, FP-Growth) to find products frequently bought together for upsell." },
+      { name: "Demand & inventory forecasting", desc: "Reduce stockouts and overstock with time-series models trained on sales and seasonal signals." },
+      { name: "Price elasticity modeling", desc: "Estimate how demand changes with price to set optimal pricing and promotional strategies." },
+      { name: "Churn prediction", desc: "Identify customers likely to stop purchasing and trigger retention campaigns before they leave." },
+      { name: "A/B testing & experimentation", desc: "Run controlled experiments on product pages, emails, and checkout flows to lift conversion rate." },
+    ],
+    tools: [
+      { badge: "Language", badgeBg: "#FAECE7", badgeText: "#712B13", name: "Python", desc: "mlxtend, scikit-learn, statsmodels for segmentation, forecasting, and ML." },
+      { badge: "BI", badgeBg: "#FAECE7", badgeText: "#712B13", name: "Looker / Tableau", desc: "Sales dashboards, funnel reporting, and executive KPI tracking." },
+      { badge: "Platform", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "Google Analytics 4", desc: "Web and app behavior tracking for conversion funnel and attribution analysis." },
+      { badge: "Platform", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "Shopify / Salesforce", desc: "E-commerce and CRM platforms providing transactional and customer data." },
+      { badge: "Data", badgeBg: "#E1F5EE", badgeText: "#085041", name: "Snowflake / BigQuery", desc: "Cloud data warehouses that consolidate sales, web, and inventory data." },
+      { badge: "CDP", badgeBg: "#E1F5EE", badgeText: "#085041", name: "Segment / mParticle", desc: "Customer data platforms that unify identity across web, mobile, and in-store." },
+      { badge: "Testing", badgeBg: "#EEEDFE", badgeText: "#3C3489", name: "Optimizely / VWO", desc: "A/B and multivariate testing platforms for site and email experimentation." },
+      { badge: "Modeling", badgeBg: "#EEEDFE", badgeText: "#3C3489", name: "Prophet / XGBoost", desc: "Demand forecasting and churn prediction modeling libraries." },
+    ],
+    datasets: [
+      { name: "Point-of-sale (POS) transaction data", desc: "Item-level sales records with timestamps, SKU, price, and store location for basket and trend analysis." },
+      { name: "Customer & loyalty data", desc: "Purchase history, demographic profiles, and loyalty program activity for segmentation and CLV modeling." },
+      { name: "Web & app clickstream data", desc: "Session-level user behavior — page views, clicks, searches, and cart events — from analytics platforms." },
+      { name: "Inventory & supply chain data", desc: "Stock levels, replenishment lead times, and supplier data for demand forecasting and inventory optimization." },
+      { name: "Pricing & competitor data", desc: "Internal pricing history and web-scraped competitor prices for price elasticity and dynamic pricing models." },
+      { name: "Product catalog & review data", desc: "SKU attributes, descriptions, and customer review text for NLP-driven recommendation and sentiment models." },
+    ],
+    careers: [
+      { title: "Retail data analyst", salary: "$65k – $105k", desc: "SQL, Excel, Tableau, POS systems. Found at: retailers, grocery chains, department stores." },
+      { title: "E-commerce analyst", salary: "$70k – $120k", desc: "GA4, SQL, Python, A/B testing. Found at: DTC brands, online marketplaces." },
+      { title: "Demand planner", salary: "$70k – $115k", desc: "Forecasting models, Excel, SAP IBP. Found at: retailers, CPG companies, 3PLs." },
+      { title: "Customer analytics manager", salary: "$90k – $145k", desc: "RFM, CLV modeling, Python/SQL. Found at: enterprise retailers, subscription brands." },
+      { title: "Pricing analyst", salary: "$75k – $130k", desc: "Elasticity modeling, Python, competitive intelligence. Found at: retailers, pricing software firms." },
+      { title: "Retail data scientist", salary: "$100k – $165k", desc: "ML, recommender systems, causal inference. Found at: Amazon, Walmart, Target, DTC." },
+    ],
+  },
+  {
+    id: "manufacturing",
+    label: "Manufacturing",
+    color: "#3C3489",
+    colorLight: "#EEEDFE",
+    colorText: "#26215C",
+    salaryColor: "#0F6E56",
+    iconBg: "#EEEDFE",
+    icon: "◫",
+    title: "Manufacturing Data Analysis",
+    desc: "Sensor, quality, and supply chain data drive predictive maintenance, defect reduction, and operational efficiency across production.",
+    methods: [
+      { name: "Predictive maintenance", desc: "Use vibration, temperature, and runtime sensor data to forecast equipment failures before they occur." },
+      { name: "Quality control (SPC)", desc: "Statistical process control charts (X-bar, CUSUM) monitor production lines for defects in real time." },
+      { name: "OEE analysis", desc: "Measure Overall Equipment Effectiveness by decomposing losses into availability, performance, and quality." },
+      { name: "Supply chain analytics", desc: "Optimize procurement, logistics, and inventory with simulation and linear programming models." },
+      { name: "Computer vision inspection", desc: "Automate surface-defect detection using image classification and object detection on production lines." },
+      { name: "Digital twin simulation", desc: "Build virtual replicas of equipment or plants to simulate what-if scenarios without real-world risk." },
+    ],
+    tools: [
+      { badge: "Language", badgeBg: "#EEEDFE", badgeText: "#3C3489", name: "Python", desc: "scikit-learn, TensorFlow, PyTorch for predictive maintenance and CV models." },
+      { badge: "SCADA", badgeBg: "#EEEDFE", badgeText: "#3C3489", name: "Ignition / Wonderware", desc: "Industrial SCADA platforms for real-time machine monitoring and control." },
+      { badge: "Platform", badgeBg: "#FAEEDA", badgeText: "#633806", name: "SAP / Oracle MES", desc: "ERP and manufacturing execution systems that generate production and quality data." },
+      { badge: "Historian", badgeBg: "#FAEEDA", badgeText: "#633806", name: "OSIsoft PI", desc: "Industry-standard time-series historian for ingesting high-frequency sensor data." },
+      { badge: "QC", badgeBg: "#E1F5EE", badgeText: "#085041", name: "Minitab / JMP", desc: "Statistical software purpose-built for SPC, DOE, and quality analysis." },
+      { badge: "Simulation", badgeBg: "#E1F5EE", badgeText: "#085041", name: "Ansys / MATLAB", desc: "Digital twin simulation and finite element analysis for engineering models." },
+      { badge: "Vision", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "OpenCV / YOLO", desc: "Computer vision libraries for automated defect detection on production lines." },
+      { badge: "Cloud", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "Azure IoT / AWS IoT Greengrass", desc: "Edge-to-cloud IoT pipelines for factory sensor and PLC data ingestion." },
+    ],
+    datasets: [
+      { name: "Sensor & IoT telemetry", desc: "Vibration, temperature, pressure, and current readings from PLCs and IoT sensors on production equipment." },
+      { name: "Production & MES data", desc: "Cycle times, yield rates, work order completion, and downtime events from manufacturing execution systems." },
+      { name: "Quality & inspection records", desc: "Defect types, inspection results, SPC measurements, and non-conformance reports from quality systems." },
+      { name: "Maintenance logs (CMMS)", desc: "Work orders, failure codes, parts usage, and maintenance history from computerized maintenance management systems." },
+      { name: "Supply chain & ERP data", desc: "Purchase orders, inventory levels, supplier lead times, and BOM data from SAP or Oracle ERP systems." },
+      { name: "Energy consumption data", desc: "Machine-level power consumption data used for energy efficiency benchmarking and carbon reporting." },
+    ],
+    careers: [
+      { title: "Manufacturing data analyst", salary: "$65k – $105k", desc: "SQL, Excel, Tableau, Minitab. Found at: automotive, aerospace, consumer goods plants." },
+      { title: "Quality engineer / analyst", salary: "$70k – $115k", desc: "SPC, DOE, Six Sigma, Minitab. Found at: manufacturing, pharma, semiconductor fabs." },
+      { title: "Reliability / maintenance engineer", salary: "$80k – $135k", desc: "FMEA, RCM, Python/ML, vibration analysis. Found at: heavy industry, utilities, defense." },
+      { title: "Industrial data scientist", salary: "$100k – $165k", desc: "Python, TensorFlow, time-series, CV models. Found at: GE, Siemens, industrial IoT startups." },
+      { title: "Supply chain analyst", salary: "$70k – $120k", desc: "SAP, optimization models, Python. Found at: OEMs, 3PLs, automotive tier suppliers." },
+      { title: "Digital twin engineer", salary: "$110k – $175k", desc: "Ansys, MATLAB, cloud IoT, simulation. Found at: aerospace, automotive, industrial OEMs." },
+    ],
+  },
+  {
+    id: "marketing",
+    label: "Marketing",
+    color: "#993556",
+    colorLight: "#FBEAF0",
+    colorText: "#72243E",
+    salaryColor: "#185FA5",
+    iconBg: "#FBEAF0",
+    icon: "◑",
+    title: "Marketing Data Analysis",
+    desc: "Campaign performance, attribution, and audience data help marketers maximize ROI and understand the full customer journey.",
+    methods: [
+      { name: "Attribution modeling", desc: "Allocate conversion credit across touchpoints using last-click, linear, or data-driven attribution." },
+      { name: "Cohort & funnel analysis", desc: "Track groups of users over time to measure retention, drop-off, and lifetime value by acquisition source." },
+      { name: "Customer lifetime value (CLV)", desc: "Predict long-term revenue per customer segment to guide acquisition spend and retention investment." },
+      { name: "NLP & sentiment analysis", desc: "Analyze reviews, surveys, and social posts to extract themes, sentiment, and brand perception signals." },
+      { name: "Lookalike modeling", desc: "Find new high-value prospects by modeling traits of existing best customers using ML classifiers." },
+      { name: "Campaign mix modeling (MMM)", desc: "Measure incremental impact of each marketing channel on revenue using econometric regression." },
+    ],
+    tools: [
+      { badge: "Language", badgeBg: "#FBEAF0", badgeText: "#72243E", name: "Python", desc: "pymc-marketing, scikit-learn, NLTK for MMM, CLV, and NLP analysis." },
+      { badge: "Analytics", badgeBg: "#FBEAF0", badgeText: "#72243E", name: "Google Analytics 4", desc: "Web behavior, funnel analysis, event tracking, and audience reporting." },
+      { badge: "BI", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "Looker / Tableau", desc: "Marketing performance dashboards, channel attribution, and campaign reporting." },
+      { badge: "CDP", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "Segment / HubSpot", desc: "Unified customer profiles, campaign orchestration, and engagement tracking." },
+      { badge: "Ads", badgeBg: "#E1F5EE", badgeText: "#085041", name: "Meta Ads / Google Ads API", desc: "Programmatic access to campaign performance, audience, and spend data." },
+      { badge: "Testing", badgeBg: "#E1F5EE", badgeText: "#085041", name: "Optimizely / AB Tasty", desc: "A/B and multivariate testing across landing pages, emails, and ad creative." },
+      { badge: "NLP", badgeBg: "#FAEEDA", badgeText: "#633806", name: "HuggingFace / spaCy", desc: "Transformer models and NLP pipelines for review and social media text analysis." },
+      { badge: "Warehouse", badgeBg: "#FAEEDA", badgeText: "#633806", name: "BigQuery / Snowflake", desc: "Centralized data warehouses combining ad spend, CRM, and web analytics data." },
+    ],
+    datasets: [
+      { name: "Ad platform data (Meta, Google, TikTok)", desc: "Impressions, clicks, spend, conversions, and audience demographics from paid advertising APIs." },
+      { name: "CRM & email engagement data", desc: "Open rates, click-through, conversion events, and customer journey data from HubSpot or Salesforce." },
+      { name: "Web & app analytics (GA4, Mixpanel)", desc: "Session behavior, funnel events, page performance, and user cohort data from analytics platforms." },
+      { name: "Survey & NPS data", desc: "Structured survey responses and open-text feedback from NPS, CSAT, and brand perception surveys." },
+      { name: "Social media & review data", desc: "Public posts, brand mentions, ratings, and review text scraped or accessed via platform APIs." },
+      { name: "First-party purchase data", desc: "Transaction history linked to customer identity — the foundation for CLV, segmentation, and MMM models." },
+    ],
+    careers: [
+      { title: "Marketing analyst", salary: "$60k – $100k", desc: "GA4, SQL, Excel, Tableau. Found at: agencies, brands, e-commerce companies." },
+      { title: "Growth / performance marketer", salary: "$75k – $130k", desc: "Paid media analytics, A/B testing, attribution. Found at: DTC, SaaS, app companies." },
+      { title: "Marketing data scientist", salary: "$100k – $165k", desc: "MMM, CLV modeling, Python/ML. Found at: large brands, adtech, consulting firms." },
+      { title: "CRM / lifecycle analyst", salary: "$70k – $120k", desc: "Cohort analysis, email segmentation, SQL. Found at: subscription brands, e-commerce." },
+      { title: "Analytics engineer", salary: "$95k – $155k", desc: "dbt, SQL, data modeling, Snowflake. Found at: tech companies, agencies, in-house teams." },
+      { title: "Brand insights analyst", salary: "$65k – $110k", desc: "NLP, survey analysis, social listening. Found at: CPG brands, market research firms." },
+    ],
+  },
+  {
+    id: "logistics",
+    label: "Logistics",
+    color: "#3B6D11",
+    colorLight: "#EAF3DE",
+    colorText: "#27500A",
+    salaryColor: "#185FA5",
+    iconBg: "#EAF3DE",
+    icon: "◁",
+    title: "Logistics & Supply Chain Analysis",
+    desc: "Route, demand, and operational data help companies cut costs, reduce delays, and build resilient supply chains.",
+    methods: [
+      { name: "Route optimization", desc: "Apply vehicle routing algorithms (VRP, genetic algorithms) to minimize delivery time and fuel cost." },
+      { name: "Inventory optimization", desc: "Use EOQ models, safety stock analysis, and ML forecasts to balance carrying costs against service levels." },
+      { name: "Last-mile delivery analysis", desc: "Analyze delivery performance data to reduce failed deliveries, optimize driver routing, and cut cost-per-stop." },
+      { name: "Network design simulation", desc: "Model warehouse and distribution center placement to minimize total landed cost across the network." },
+      { name: "Supplier risk scoring", desc: "Score supplier reliability using on-time rates, lead time variance, and external risk signals." },
+      { name: "Demand sensing", desc: "Incorporate real-time POS and IoT data into short-horizon forecasts to improve replenishment accuracy." },
+    ],
+    tools: [
+      { badge: "Language", badgeBg: "#EAF3DE", badgeText: "#27500A", name: "Python", desc: "OR-Tools, PuLP, scikit-learn for optimization, forecasting, and ML." },
+      { badge: "Optimization", badgeBg: "#EAF3DE", badgeText: "#27500A", name: "Google OR-Tools", desc: "Open-source solver for VRP, scheduling, and supply chain optimization problems." },
+      { badge: "ERP", badgeBg: "#FAEEDA", badgeText: "#633806", name: "SAP S/4HANA / Oracle SCM", desc: "Enterprise supply chain planning, procurement, and logistics management." },
+      { badge: "TMS", badgeBg: "#FAEEDA", badgeText: "#633806", name: "Manhattan / Blue Yonder", desc: "Transportation management systems with built-in analytics and routing engines." },
+      { badge: "GIS", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "ArcGIS / HERE Maps API", desc: "Geospatial analysis for network design, coverage mapping, and route visualization." },
+      { badge: "BI", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "Power BI / Tableau", desc: "Operations dashboards for on-time delivery, carrier performance, and cost metrics." },
+      { badge: "IoT", badgeBg: "#EEEDFE", badgeText: "#3C3489", name: "AWS IoT / Azure IoT", desc: "Fleet telematics, asset tracking, and cold chain temperature monitoring pipelines." },
+      { badge: "Simulation", badgeBg: "#EEEDFE", badgeText: "#3C3489", name: "AnyLogic / Simio", desc: "Discrete-event simulation for warehouse operations and network design trade-offs." },
+    ],
+    datasets: [
+      { name: "Shipment & freight data", desc: "Order-level shipping records with origin, destination, carrier, transit time, weight, and cost for performance analysis." },
+      { name: "Fleet telematics & GPS data", desc: "Vehicle location, speed, idle time, and fuel consumption from fleet management systems and IoT devices." },
+      { name: "Warehouse management data (WMS)", desc: "Pick rates, put-away times, SKU velocity, and dock-to-stock metrics from warehouse management systems." },
+      { name: "Supplier & PO data (ERP)", desc: "Purchase orders, goods receipts, and lead time records for supplier performance and procurement analytics." },
+      { name: "Weather & disruption data", desc: "Weather forecasts, port congestion indices, and geopolitical risk signals used for supply chain resilience modeling." },
+      { name: "Customs & trade data", desc: "Import/export filings, tariff codes, and duty rates — key for cross-border trade compliance and landed cost analysis." },
+    ],
+    careers: [
+      { title: "Supply chain analyst", salary: "$65k – $105k", desc: "SQL, Excel, SAP, Power BI. Found at: retailers, manufacturers, 3PLs, CPG companies." },
+      { title: "Logistics data analyst", salary: "$70k – $115k", desc: "Carrier KPIs, TMS data, Tableau. Found at: freight brokers, 3PLs, shippers." },
+      { title: "Demand planner", salary: "$70k – $120k", desc: "Time-series forecasting, SAP IBP, Python. Found at: retailers, CPG, automotive OEMs." },
+      { title: "Operations research analyst", salary: "$85k – $145k", desc: "Linear programming, Python (OR-Tools), simulation. Found at: Amazon, FedEx, UPS, consultancies." },
+      { title: "Supply chain data scientist", salary: "$100k – $165k", desc: "ML, network optimization, Python. Found at: tech-enabled 3PLs, e-commerce, consulting." },
+      { title: "Network design analyst", salary: "$90k – $150k", desc: "AnyLogic, GIS, cost modeling. Found at: consultancies (Deloitte, McKinsey), large retailers." },
+    ],
+  },
+  {
+    id: "hr",
+    label: "HR",
+    color: "#534AB7",
+    colorLight: "#EEEDFE",
+    colorText: "#3C3489",
+    salaryColor: "#0F6E56",
+    iconBg: "#EEEDFE",
+    icon: "◔",
+    title: "HR & People Analytics",
+    desc: "Workforce, engagement, and performance data help HR teams improve hiring, retention, and organizational health.",
+    methods: [
+      { name: "Attrition & retention modeling", desc: "Predict which employees are likely to leave using engagement scores, tenure, and performance data." },
+      { name: "Hiring funnel analysis", desc: "Track candidate conversion rates at each stage to identify drop-off points and improve recruiter efficiency." },
+      { name: "Compensation benchmarking", desc: "Compare pay bands against market surveys and internal equity to detect and correct compensation gaps." },
+      { name: "Employee engagement analysis", desc: "Mine survey results and pulse data with NLP to identify drivers of engagement and dissatisfaction." },
+      { name: "Performance distribution analysis", desc: "Analyze calibration data to spot rating bias, skewed distributions, and pay-for-performance alignment." },
+      { name: "Diversity & inclusion metrics", desc: "Track representation, pay equity, and promotion rates across demographic groups to measure DEI progress." },
+    ],
+    tools: [
+      { badge: "Language", badgeBg: "#EEEDFE", badgeText: "#3C3489", name: "Python / R", desc: "scikit-learn, tidymodels for attrition models, NLP on survey text, and statistical analysis." },
+      { badge: "HRIS", badgeBg: "#EEEDFE", badgeText: "#3C3489", name: "Workday / SAP SuccessFactors", desc: "Core HR systems of record for headcount, compensation, and performance data." },
+      { badge: "ATS", badgeBg: "#E1F5EE", badgeText: "#085041", name: "Greenhouse / Lever / iCIMS", desc: "Applicant tracking systems providing recruiting funnel and time-to-hire data." },
+      { badge: "Survey", badgeBg: "#E1F5EE", badgeText: "#085041", name: "Glint / Qualtrics", desc: "Employee engagement and pulse survey platforms with built-in driver analysis." },
+      { badge: "BI", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "Tableau / Power BI", desc: "Workforce dashboards for attrition rates, DEI metrics, and headcount planning." },
+      { badge: "Compensation", badgeBg: "#E6F1FB", badgeText: "#0C447C", name: "Radford / Mercer / Levels.fyi", desc: "Market compensation benchmarking data used for pay band analysis and equity reviews." },
+      { badge: "NLP", badgeBg: "#FAEEDA", badgeText: "#633806", name: "HuggingFace / spaCy", desc: "Text analysis of open-ended survey responses, exit interviews, and performance reviews." },
+      { badge: "Org Network", badgeBg: "#FAEEDA", badgeText: "#633806", name: "Microsoft Viva / ONA tools", desc: "Organizational network analysis tools for collaboration pattern and influence mapping." },
+    ],
+    datasets: [
+      { name: "HRIS / HCM data", desc: "Employee demographics, tenure, job level, department, location, and employment history from Workday or SAP." },
+      { name: "Recruiting & ATS data", desc: "Application volumes, stage conversion rates, time-to-fill, offer acceptance rates, and source-of-hire from ATS." },
+      { name: "Performance management data", desc: "Annual review ratings, goal completion, 360 feedback scores, and calibration outcomes by manager and team." },
+      { name: "Compensation & payroll data", desc: "Base salary, bonus, equity grants, and total compensation data used for equity analysis and market benchmarking." },
+      { name: "Engagement survey data", desc: "Likert-scale responses and open-text from annual and pulse surveys measuring engagement, burnout, and manager effectiveness." },
+      { name: "Learning & development (LMS) data", desc: "Training completions, certification attainment, and skill assessment scores from learning management systems." },
+    ],
+    careers: [
+      { title: "People analyst", salary: "$70k – $115k", desc: "SQL, Excel, Tableau, Workday. Found at: tech companies, large enterprises, HR consultancies." },
+      { title: "HR data analyst", salary: "$65k – $105k", desc: "HRIS reporting, Power BI, attrition metrics. Found at: mid-to-large employers across industries." },
+      { title: "Compensation analyst", salary: "$75k – $125k", desc: "Market benchmarking, pay equity analysis, Excel/Python. Found at: tech, finance, consulting." },
+      { title: "Talent acquisition analyst", salary: "$65k – $110k", desc: "ATS data, funnel metrics, sourcing analysis. Found at: in-house TA teams, RPO providers." },
+      { title: "Organizational effectiveness analyst", salary: "$80k – $135k", desc: "ONA, survey analysis, change management. Found at: consulting firms, large enterprises." },
+      { title: "Senior people data scientist", salary: "$110k – $180k", desc: "ML, NLP, causal inference, Python. Found at: Google, Meta, Airbnb, LinkedIn, large tech." },
+    ],
+  },
+];
+
+function buildPanel(ind) {
+  const root = document.getElementById('panel-root');
+
+  const panel = document.createElement('div');
+  panel.className = 'panel';
+  panel.style.setProperty('--ind-color', ind.color);
+
+  // Header
+  const hdr = document.createElement('div');
+  hdr.className = 'panel-header';
+  hdr.innerHTML = `
+    <div class="panel-icon" style="background:${ind.colorLight}; color:${ind.color}; font-size:22px;">${ind.icon}</div>
+    <div>
+      <div class="panel-title">${ind.title}</div>
+      <div class="panel-desc">${ind.desc}</div>
+    </div>
+  `;
+  panel.appendChild(hdr);
+
+  // Methods
+  const ms = document.createElement('div');
+  ms.className = 'methods-section';
+  ms.innerHTML = `<div class="section-label">Analysis methods</div>`;
+  const mg = document.createElement('div'); mg.className = 'methods-grid';
+  ind.methods.forEach(m => {
+    const c = document.createElement('div'); c.className = 'method-card';
+    c.innerHTML = `<div class="method-name">${m.name}</div><div class="method-desc">${m.desc}</div>`;
+    mg.appendChild(c);
+  });
+  ms.appendChild(mg);
+  panel.appendChild(ms);
+
+  // Tools
+  const ts = document.createElement('div');
+  ts.className = 'tools-section';
+  ts.innerHTML = `<div class="section-label">Tools & technologies</div>`;
+  const tg = document.createElement('div'); tg.className = 'tools-grid';
+  ind.tools.forEach(t => {
+    const c = document.createElement('div'); c.className = 'tool-card';
+    c.innerHTML = `
+      <div class="tool-badge" style="background:${t.badgeBg};color:${t.badgeText};">${t.badge}</div>
+      <div class="tool-name">${t.name}</div>
+      <div class="tool-desc">${t.desc}</div>
+    `;
+    tg.appendChild(c);
+  });
+  ts.appendChild(tg);
+  panel.appendChild(ts);
+
+  // Datasets
+  const ds = document.createElement('div');
+  ds.className = 'datasets-section';
+  ds.innerHTML = `<div class="section-label">Key datasets</div>`;
+  ind.datasets.forEach(d => {
+    const row = document.createElement('div'); row.className = 'dataset-row';
+    row.innerHTML = `
+      <div class="ds-dot" style="background:${ind.color};"></div>
+      <div><div class="ds-name">${d.name}</div><div class="ds-desc">${d.desc}</div></div>
+    `;
+    ds.appendChild(row);
+  });
+  panel.appendChild(ds);
+
+  // Careers
+  const cs = document.createElement('div');
+  cs.className = 'careers-section';
+  cs.innerHTML = `<div class="section-label">Career paths</div>`;
+  const cg = document.createElement('div'); cg.className = 'careers-grid';
+  ind.careers.forEach(c => {
+    const card = document.createElement('div'); card.className = 'career-card';
+    card.innerHTML = `
+      <div class="career-title">${c.title}</div>
+      <div class="career-salary" style="color:${ind.salaryColor};">${c.salary}</div>
+      <div class="career-skills">${c.desc}</div>
+    `;
+    cg.appendChild(card);
+  });
+  cs.appendChild(cg);
+  panel.appendChild(cs);
+
+  root.innerHTML = '';
+  root.appendChild(panel);
+}
+
+function initTabs() {
+  const wrap = document.getElementById('tabs-wrap');
+  INDUSTRIES.forEach((ind, i) => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (i === 0 ? ' active' : '');
+    btn.innerHTML = `<span class="tab-dot" style="background:${ind.color};opacity:1;"></span>${ind.label}`;
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tab-btn').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      buildPanel(ind);
+    });
+    wrap.appendChild(btn);
+  });
+  buildPanel(INDUSTRIES[0]);
+}
+
+initTabs();
+</script>
+</body>
+</html>
