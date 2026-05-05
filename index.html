@@ -378,7 +378,91 @@
 <footer>
   <div class="footer-logo">Data<span>Lens</span></div>
   <div class="footer-note">A reference guide to data analysis across industries.</div>
+
+<section id="blog" style="max-width:860px; margin:0 auto; padding:0 2rem 4rem;">
+
+  <div style="border-top:0.5px solid var(--border); padding-top:3rem; margin-bottom:2rem;">
+    <p style="font-size:11px; font-weight:500; letter-spacing:0.09em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:8px;">From the blog</p>
+    <h2 style="font-family:var(--ff-display); font-size:32px; font-weight:400; color:var(--text-primary); letter-spacing:-0.02em;">Latest articles</h2>
+  </div>
+
+  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px;">
+
+    <!-- Blog Post Card — duplicate this block for each post -->
+    <article style="background:var(--bg-card); border:0.5px solid var(--border); border-radius:var(--radius-lg); padding:1.5rem; display:flex; flex-direction:column; gap:10px; cursor:pointer; transition:background 0.15s;" 
+             onclick="togglePost('post1')" onmouseenter="this.style.background='var(--bg-surface)'" onmouseleave="this.style.background='var(--bg-card)'">
+      <div style="display:flex; align-items:center; justify-content:space-between;">
+        <span style="font-size:11px; font-weight:500; padding:3px 10px; border-radius:999px; background:var(--bg-surface); color:var(--text-secondary);">Finance</span>
+        <span style="font-size:11px; color:var(--text-tertiary);">May 2025</span>
+      </div>
+      <h3 style="font-size:15px; font-weight:500; color:var(--text-primary); line-height:1.4;">How AML analysts use data to detect financial crime</h3>
+      <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">A practical look at the data sources, models, and tools used in anti-money laundering investigations.</p>
+      <div id="post1" style="display:none; border-top:0.5px solid var(--border); padding-top:12px; margin-top:4px;">
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.6;">
+          Anti-money laundering (AML) analysts rely heavily on transaction monitoring systems that flag unusual patterns — 
+          large cash deposits, rapid fund movements, or transfers to high-risk jurisdictions. Graph analytics is increasingly 
+          used to map relationships between accounts and detect layering schemes. Tools like Actimize, Quantexa, and 
+          internal SQL-based rule engines form the backbone of most AML operations. Machine learning models trained on 
+          historical SAR (Suspicious Activity Report) data are now being used to reduce false positives — a major 
+          pain point in traditional rule-based systems.
+        </p>
+      </div>
+      <span style="font-size:12px; color:var(--accent); font-weight:500; margin-top:auto;">Read more ↓</span>
+    </article>
+
+    <!-- Post 2 -->
+    <article style="background:var(--bg-card); border:0.5px solid var(--border); border-radius:var(--radius-lg); padding:1.5rem; display:flex; flex-direction:column; gap:10px; cursor:pointer; transition:background 0.15s;"
+             onclick="togglePost('post2')" onmouseenter="this.style.background='var(--bg-surface)'" onmouseleave="this.style.background='var(--bg-card)'">
+      <div style="display:flex; align-items:center; justify-content:space-between;">
+        <span style="font-size:11px; font-weight:500; padding:3px 10px; border-radius:999px; background:var(--bg-surface); color:var(--text-secondary);">Business Intelligence</span>
+        <span style="font-size:11px; color:var(--text-tertiary);">Apr 2025</span>
+      </div>
+      <h3 style="font-size:15px; font-weight:500; color:var(--text-primary); line-height:1.4;">Power BI vs Tableau — which should a Business Analyst learn first?</h3>
+      <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">A side-by-side comparison of both tools to help you decide where to invest your learning time.</p>
+      <div id="post2" style="display:none; border-top:0.5px solid var(--border); padding-top:12px; margin-top:4px;">
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.6;">
+          Power BI wins on Microsoft ecosystem integration — if your org runs on Azure, Teams, and Excel, 
+          Power BI is the natural choice and is significantly cheaper at scale. Tableau leads on visual 
+          flexibility and is more widely used in data-mature organizations and consulting firms. For a 
+          Business Analyst entering the job market, Power BI has more job postings in corporate and 
+          mid-market roles, while Tableau dominates in analytics-heavy and enterprise environments. 
+          Learn Power BI first if you're targeting banking, consulting, or operations roles. 
+          Learn Tableau if you're targeting tech companies or data analyst positions.
+        </p>
+      </div>
+      <span style="font-size:12px; color:var(--accent); font-weight:500; margin-top:auto;">Read more ↓</span>
+    </article>
+
+    <!-- Post 3 -->
+    <article style="background:var(--bg-card); border:0.5px solid var(--border); border-radius:var(--radius-lg); padding:1.5rem; display:flex; flex-direction:column; gap:10px; cursor:pointer; transition:background 0.15s;"
+             onclick="togglePost('post3')" onmouseenter="this.style.background='var(--bg-surface)'" onmouseleave="this.style.background='var(--bg-card)'">
+      <div style="display:flex; align-items:center; justify-content:space-between;">
+        <span style="font-size:11px; font-weight:500; padding:3px 10px; border-radius:999px; background:var(--bg-surface); color:var(--text-secondary);">SQL</span>
+        <span style="font-size:11px; color:var(--text-tertiary);">Mar 2025</span>
+      </div>
+      <h3 style="font-size:15px; font-weight:500; color:var(--text-primary); line-height:1.4;">Top SQL queries every Business Analyst uses daily</h3>
+      <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">The essential SQL patterns — from joins to window functions — that show up in real BA work every day.</p>
+      <div id="post3" style="display:none; border-top:0.5px solid var(--border); padding-top:12px; margin-top:4px;">
+        <p style="font-size:13px; color:var(--text-secondary); line-height:1.6;">
+          The queries BAs use most: GROUP BY aggregations for summarizing sales or transaction volumes, 
+          LEFT JOIN to combine customer and order tables without losing unmatched rows, CASE WHEN for 
+          creating derived categories (e.g. customer tiers), ROW_NUMBER() and RANK() window functions 
+          for ranking within groups, and CTEs (WITH clauses) to break complex logic into readable steps. 
+          If you master these five patterns, you can handle 80% of the ad-hoc analysis requests a 
+          Business Analyst encounters in banking, operations, or finance roles.
+        </p>
+      </div>
+      <span style="font-size:12px; color:var(--accent); font-weight:500; margin-top:auto;">Read more ↓</span>
+    </article>
+
+  </div>
+</section>
 </footer>
+
+function togglePost(id) {
+  const el = document.getElementById(id);
+  el.style.display = el.style.display === 'none' ? 'block' : 'none';
+}
 
 <script>
 const INDUSTRIES = [
