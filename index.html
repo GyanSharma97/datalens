@@ -340,6 +340,54 @@
     .footer-note { font-size: 12px; color: var(--text-tertiary); }
 
     /* ── RESPONSIVE ── */
+    /* ── PAGE ROUTER ── */
+    .page { display: none; }
+    .page.active { display: block; }
+
+    /* ── BLOG SECTION ── */
+    .post-card {
+      background: var(--bg-card); border: 0.5px solid var(--border);
+      border-radius: var(--radius-lg); padding: 1.5rem;
+      display: flex; flex-direction: column; gap: 10px;
+      cursor: pointer; transition: background 0.15s, border-color 0.15s;
+    }
+    .post-card:hover { background: var(--bg-surface); }
+    .post-card.open { border-color: var(--accent); }
+    .post-tag { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 999px; background: var(--bg-surface); color: var(--text-secondary); }
+    .post-date { font-size: 11px; color: var(--text-tertiary); }
+    .post-title { font-size: 14px; font-weight: 500; color: var(--text-primary); line-height: 1.4; }
+    .post-excerpt { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+    .post-body { display: none; border-top: 0.5px solid var(--border); padding-top: 12px; margin-top: 4px; }
+    .post-body.visible { display: block; animation: fadeSlide 0.2s ease; }
+    .post-body p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 10px; }
+    .post-body p:last-child { margin-bottom: 0; }
+    .post-body h4 { font-size: 13px; font-weight: 500; color: var(--text-primary); margin: 12px 0 6px; }
+    .post-body ul { padding-left: 1.2rem; }
+    .post-body ul li { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 4px; }
+    .read-more { font-size: 12px; color: var(--accent); font-weight: 500; margin-top: auto; }
+
+    /* ── PRIVACY PAGE ── */
+    .privacy-hero { max-width: 720px; margin: 0 auto; padding: 4rem 2rem 2rem; }
+    .privacy-hero h1 { font-family: var(--ff-display); font-size: clamp(30px, 5vw, 46px); font-weight: 400; letter-spacing: -0.02em; margin-bottom: 10px; }
+    .privacy-hero p { font-size: 14px; color: var(--text-secondary); }
+    .privacy-content { max-width: 720px; margin: 0 auto; padding: 0 2rem 5rem; }
+    .privacy-block { border: 0.5px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-card); overflow: hidden; margin-bottom: 10px; }
+    .privacy-block-hdr { display: flex; align-items: center; justify-content: space-between; padding: 1.1rem 1.5rem; cursor: pointer; transition: background 0.15s; }
+    .privacy-block-hdr:hover { background: var(--bg-surface); }
+    .privacy-block-hdr h3 { font-size: 14px; font-weight: 500; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
+    .privacy-block-hdr h3 span { font-size: 16px; color: var(--accent); }
+    .privacy-block-hdr .chevron { font-size: 12px; color: var(--text-tertiary); transition: transform 0.2s; }
+    .privacy-block-hdr.open .chevron { transform: rotate(180deg); }
+    .privacy-block-body { display: none; padding: 0 1.5rem 1.25rem; border-top: 0.5px solid var(--border); }
+    .privacy-block-body.visible { display: block; animation: fadeSlide 0.18s ease; }
+    .privacy-block-body p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-top: 1rem; }
+    .privacy-block-body ul { padding-left: 1.2rem; margin-top: 0.75rem; }
+    .privacy-block-body ul li { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 5px; }
+    .privacy-block-body strong { color: var(--text-primary); font-weight: 500; }
+    .privacy-contact { background: var(--accent-light); border-radius: var(--radius-lg); padding: 1.5rem; margin-top: 1.5rem; display: flex; align-items: flex-start; gap: 12px; }
+    .privacy-contact-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 5px; flex-shrink: 0; }
+    .privacy-contact p { font-size: 13px; color: var(--accent-text, #0C447C); line-height: 1.6; }
+    .privacy-contact a { color: var(--accent); font-weight: 500; }
     @media (max-width: 600px) {
       .hero { padding: 3rem 1.25rem 2rem; }
       .tabs-section { padding: 0 1.25rem 1.5rem; }
