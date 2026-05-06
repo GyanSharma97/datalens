@@ -400,6 +400,11 @@
 </head>
 <body>
 
+<body>
+
+<!-- ══════════════════ HOME PAGE ══════════════════ -->
+<div id="page-home" class="page active">
+
 <nav>
   <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer;">Data<span>Lens</span></div>
   <div style="display:flex; align-items:center; gap:1rem;">
@@ -419,96 +424,331 @@
   <div id="panel-root"></div>
 </section>
 
+<!-- BLOG SECTION -->
 <section id="blog" style="max-width:860px; margin:0 auto; padding:0 2rem 4rem;">
-
   <div style="border-top:0.5px solid var(--border); padding-top:3rem; margin-bottom:2rem;">
     <p style="font-size:11px; font-weight:500; letter-spacing:0.09em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:8px;">From the blog</p>
     <h2 style="font-family:var(--ff-display); font-size:32px; font-weight:400; color:var(--text-primary); letter-spacing:-0.02em;">Latest articles</h2>
   </div>
-
-  <div style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px;">
-
-    <!-- Blog Post Card — duplicate this block for each post -->
-    <article style="background:var(--bg-card); border:0.5px solid var(--border); border-radius:var(--radius-lg); padding:1.5rem; display:flex; flex-direction:column; gap:10px; cursor:pointer; transition:background 0.15s;" 
-             onclick="togglePost('post1')" onmouseenter="this.style.background='var(--bg-surface)'" onmouseleave="this.style.background='var(--bg-card)'">
-      <div style="display:flex; align-items:center; justify-content:space-between;">
-        <span style="font-size:11px; font-weight:500; padding:3px 10px; border-radius:999px; background:var(--bg-surface); color:var(--text-secondary);">Finance</span>
-        <span style="font-size:11px; color:var(--text-tertiary);">May 2025</span>
-      </div>
-      <h3 style="font-size:15px; font-weight:500; color:var(--text-primary); line-height:1.4;">How AML analysts use data to detect financial crime</h3>
-      <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">A practical look at the data sources, models, and tools used in anti-money laundering investigations.</p>
-      <div id="post1" style="display:none; border-top:0.5px solid var(--border); padding-top:12px; margin-top:4px;">
-        <p style="font-size:13px; color:var(--text-secondary); line-height:1.6;">
-          Anti-money laundering (AML) analysts rely heavily on transaction monitoring systems that flag unusual patterns — 
-          large cash deposits, rapid fund movements, or transfers to high-risk jurisdictions. Graph analytics is increasingly 
-          used to map relationships between accounts and detect layering schemes. Tools like Actimize, Quantexa, and 
-          internal SQL-based rule engines form the backbone of most AML operations. Machine learning models trained on 
-          historical SAR (Suspicious Activity Report) data are now being used to reduce false positives — a major 
-          pain point in traditional rule-based systems.
-        </p>
-      </div>
-      <span style="font-size:12px; color:var(--accent); font-weight:500; margin-top:auto;">Read more ↓</span>
-    </article>
-
-    <!-- Post 2 -->
-    <article style="background:var(--bg-card); border:0.5px solid var(--border); border-radius:var(--radius-lg); padding:1.5rem; display:flex; flex-direction:column; gap:10px; cursor:pointer; transition:background 0.15s;"
-             onclick="togglePost('post2')" onmouseenter="this.style.background='var(--bg-surface)'" onmouseleave="this.style.background='var(--bg-card)'">
-      <div style="display:flex; align-items:center; justify-content:space-between;">
-        <span style="font-size:11px; font-weight:500; padding:3px 10px; border-radius:999px; background:var(--bg-surface); color:var(--text-secondary);">Business Intelligence</span>
-        <span style="font-size:11px; color:var(--text-tertiary);">Apr 2025</span>
-      </div>
-      <h3 style="font-size:15px; font-weight:500; color:var(--text-primary); line-height:1.4;">Power BI vs Tableau — which should a Business Analyst learn first?</h3>
-      <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">A side-by-side comparison of both tools to help you decide where to invest your learning time.</p>
-      <div id="post2" style="display:none; border-top:0.5px solid var(--border); padding-top:12px; margin-top:4px;">
-        <p style="font-size:13px; color:var(--text-secondary); line-height:1.6;">
-          Power BI wins on Microsoft ecosystem integration — if your org runs on Azure, Teams, and Excel, 
-          Power BI is the natural choice and is significantly cheaper at scale. Tableau leads on visual 
-          flexibility and is more widely used in data-mature organizations and consulting firms. For a 
-          Business Analyst entering the job market, Power BI has more job postings in corporate and 
-          mid-market roles, while Tableau dominates in analytics-heavy and enterprise environments. 
-          Learn Power BI first if you're targeting banking, consulting, or operations roles. 
-          Learn Tableau if you're targeting tech companies or data analyst positions.
-        </p>
-      </div>
-      <span style="font-size:12px; color:var(--accent); font-weight:500; margin-top:auto;">Read more ↓</span>
-    </article>
-
-    <!-- Post 3 -->
-    <article style="background:var(--bg-card); border:0.5px solid var(--border); border-radius:var(--radius-lg); padding:1.5rem; display:flex; flex-direction:column; gap:10px; cursor:pointer; transition:background 0.15s;"
-             onclick="togglePost('post3')" onmouseenter="this.style.background='var(--bg-surface)'" onmouseleave="this.style.background='var(--bg-card)'">
-      <div style="display:flex; align-items:center; justify-content:space-between;">
-        <span style="font-size:11px; font-weight:500; padding:3px 10px; border-radius:999px; background:var(--bg-surface); color:var(--text-secondary);">SQL</span>
-        <span style="font-size:11px; color:var(--text-tertiary);">Mar 2025</span>
-      </div>
-      <h3 style="font-size:15px; font-weight:500; color:var(--text-primary); line-height:1.4;">Top SQL queries every Business Analyst uses daily</h3>
-      <p style="font-size:13px; color:var(--text-secondary); line-height:1.5;">The essential SQL patterns — from joins to window functions — that show up in real BA work every day.</p>
-      <div id="post3" style="display:none; border-top:0.5px solid var(--border); padding-top:12px; margin-top:4px;">
-        <p style="font-size:13px; color:var(--text-secondary); line-height:1.6;">
-          The queries BAs use most: GROUP BY aggregations for summarizing sales or transaction volumes, 
-          LEFT JOIN to combine customer and order tables without losing unmatched rows, CASE WHEN for 
-          creating derived categories (e.g. customer tiers), ROW_NUMBER() and RANK() window functions 
-          for ranking within groups, and CTEs (WITH clauses) to break complex logic into readable steps. 
-          If you master these five patterns, you can handle 80% of the ad-hoc analysis requests a 
-          Business Analyst encounters in banking, operations, or finance roles.
-        </p>
-      </div>
-      <span style="font-size:12px; color:var(--accent); font-weight:500; margin-top:auto;">Read more ↓</span>
-    </article>
-
-  </div>
+  <div id="blog-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px;"></div>
 </section>
 
 <footer>
   <div class="footer-logo">Data<span>Lens</span></div>
-  <div style="display:flex; gap:1.5rem;">
-    <a href="blog.html" style="font-size:12px; color:var(--text-secondary); text-decoration:none;">Blog</a>
-    <a href="privacy.html" style="font-size:12px; color:var(--text-secondary); text-decoration:none;">Privacy Policy</a>
+  <div style="display:flex; gap:1.5rem; align-items:center;">
+    <span style="font-size:12px; color:var(--text-secondary); cursor:pointer;" onclick="scrollToBlog()">Blog</span>
+    <span style="font-size:12px; color:var(--text-secondary); cursor:pointer;" onclick="showPage('privacy')">Privacy Policy</span>
     <a href="https://www.linkedin.com/in/gyansharma695/" target="_blank" style="font-size:12px; color:var(--text-secondary); text-decoration:none;">LinkedIn</a>
   </div>
-  <div class="footer-note">A reference guide to data analysis across industries.</div>
+  <div class="footer-note">Built by Gyanendu Sharma</div>
 </footer>
 
+</div><!-- end page-home -->
+
+<!-- ══════════════════ PRIVACY PAGE ══════════════════ -->
+<div id="page-privacy" class="page">
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer;">Data<span>Lens</span></div>
+  <div style="display:flex; align-items:center; gap:1rem;">
+    <span class="nav-tag">Industry Analysis Guide</span>
+    <button onclick="showPage('home')" style="font-size:13px; font-weight:500; color:var(--accent); background:transparent; border:0.5px solid var(--accent); padding:5px 14px; border-radius:999px; cursor:pointer; font-family:var(--ff-body);">← Home</button>
+  </div>
+</nav>
+
+<div class="privacy-hero">
+  <p style="font-size:11px;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">Legal</p>
+  <h1>Privacy Policy</h1>
+  <p>Last updated: May 2025 · This policy explains how DataLens collects, uses, and protects your information when you visit this website.</p>
+</div>
+
+<div class="privacy-content">
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="togglePrivacy(this)">
+      <h3><span>◈</span> Information we collect</h3><span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>DataLens is a static informational website. We do not collect personally identifiable information directly. The following may be collected automatically:</p>
+      <ul>
+        <li><strong>Usage data</strong> — pages visited, time spent, tabs clicked via Google Analytics 4.</li>
+        <li><strong>Device data</strong> — browser type, operating system, screen resolution, device category.</li>
+        <li><strong>Location data</strong> — approximate country and city inferred from your IP address.</li>
+        <li><strong>Referral data</strong> — the website or search engine that referred you to DataLens.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="togglePrivacy(this)">
+      <h3><span>◎</span> How we use your information</h3><span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>Data is used solely to understand how visitors interact with the site and to improve content. We do <strong>not</strong> use your data for advertising, profiling, or sell it to any third parties.</p>
+      <ul>
+        <li>To see which industry tabs and blog posts are most popular.</li>
+        <li>To understand where visitors come from and what devices they use.</li>
+        <li>To improve content quality, navigation, and site performance.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="togglePrivacy(this)">
+      <h3><span>◇</span> Google Analytics</h3><span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>This website uses <strong>Google Analytics 4 (GA4)</strong> to collect anonymous usage statistics. GA4 data is anonymized — we cannot identify individual users. You can opt out via the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">Google Analytics Opt-out Add-on</a>.</p>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="togglePrivacy(this)">
+      <h3><span>◉</span> Cookies</h3><span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>DataLens sets no first-party cookies. Google Analytics sets: <strong>_ga</strong> (2 years), <strong>_gid</strong> (24 hours), <strong>_ga_XXXXXXX</strong> (2 years). You can manage cookies through your browser settings at any time.</p>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="togglePrivacy(this)">
+      <h3><span>◫</span> Data retention</h3><span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>Analytics data is retained in Google Analytics for <strong>14 months</strong> by default, after which it is automatically deleted. Since DataLens is a static website hosted on GitHub Pages, no user data is stored in any database by us directly.</p>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="togglePrivacy(this)">
+      <h3><span>◑</span> Third-party links</h3><span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>DataLens may contain links to external websites including LinkedIn and GitHub. We are not responsible for the privacy practices of those sites. We encourage you to review their privacy policies.</p>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="togglePrivacy(this)">
+      <h3><span>◁</span> Your rights</h3><span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>Depending on your location you may have rights to access, delete, or opt out of data collection.</p>
+      <ul>
+        <li><strong>GDPR (EU users)</strong> — rights to access, rectification, and erasure under GDPR.</li>
+        <li><strong>CCPA (California users)</strong> — right to know what data is collected and request deletion.</li>
+      </ul>
+      <p>Since we collect no PII directly, most data requests should be directed to Google Analytics.</p>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="togglePrivacy(this)">
+      <h3><span>◔</span> Changes to this policy</h3><span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>We may update this Privacy Policy from time to time. When we do, we will update the "Last updated" date at the top of this page. Continued use of the website after changes are posted constitutes acceptance of the updated policy.</p>
+    </div>
+  </div>
+
+  <div class="privacy-contact">
+    <div class="privacy-contact-dot"></div>
+    <p>Questions? Reach out via <a href="https://www.linkedin.com/in/gyansharma695/" target="_blank">LinkedIn</a> or email <a href="mailto:gyansharma2017@outlook.com">gyansharma2017@outlook.com</a>. We aim to respond within 5 business days.</p>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo" onclick="showPage('home')" style="cursor:pointer;">Data<span>Lens</span></div>
+  <div style="display:flex; gap:1.5rem;">
+    <span style="font-size:12px; color:var(--text-secondary); cursor:pointer;" onclick="showPage('home')">Home</span>
+    <span style="font-size:12px; color:var(--text-secondary); cursor:pointer;" onclick="showPage('privacy')">Privacy Policy</span>
+    <a href="https://www.linkedin.com/in/gyansharma695/" target="_blank" style="font-size:12px; color:var(--text-secondary); text-decoration:none;">LinkedIn</a>
+  </div>
+  <div class="footer-note">Built by Gyanendu Sharma</div>
+</footer>
+
+</div><!-- end page-privacy -->
+
 <script>
+
+/* ── PAGE ROUTER ── */
+function showPage(id) {
+  document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
+  document.getElementById('page-' + id).classList.add('active');
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
+function scrollToBlog() {
+  showPage('home');
+  setTimeout(() => document.getElementById('blog').scrollIntoView({ behavior: 'smooth' }), 100);
+}
+
+/* ── PRIVACY ACCORDION ── */
+function togglePrivacy(hdr) {
+  const body = hdr.nextElementSibling;
+  const isOpen = hdr.classList.contains('open');
+  document.querySelectorAll('.privacy-block-hdr').forEach(h => h.classList.remove('open'));
+  document.querySelectorAll('.privacy-block-body').forEach(b => b.classList.remove('visible'));
+  if (!isOpen) { hdr.classList.add('open'); body.classList.add('visible'); }
+}
+
+/* ── BLOG POSTS ── */
+const POSTS = [
+  {
+    tag: "Finance & AML", date: "May 2025",
+    title: "How AML analysts use data to detect financial crime",
+    excerpt: "A practical look at the data sources, models, and tools used in anti-money laundering investigations.",
+    body: `<p>AML analysts rely on transaction monitoring systems that flag unusual patterns — large cash deposits, rapid fund movements, or transfers to high-risk jurisdictions. These rules-based systems produce enormous volumes of false positives, often flagging 95%+ of alerts as non-suspicious after manual review.</p>
+    <h4>Key tools & techniques</h4>
+    <ul>
+      <li>Transaction monitoring platforms: Actimize, Temenos Financial Crime Mitigation</li>
+      <li>Graph databases (Neo4j) for network relationship mapping</li>
+      <li>Machine learning to reduce false positives using historical SAR data</li>
+      <li>NLP on news and sanctions databases for name matching</li>
+    </ul>`
+  },
+  {
+    tag: "Business Intelligence", date: "Apr 2025",
+    title: "Power BI vs Tableau — which should a Business Analyst learn first?",
+    excerpt: "A side-by-side comparison to help you decide where to invest your learning time.",
+    body: `<h4>Choose Power BI if:</h4>
+    <ul>
+      <li>Your org runs on Microsoft 365, Azure, or Teams</li>
+      <li>You're targeting banking, corporate finance, or operations roles</li>
+      <li>Cost matters — Power BI is significantly cheaper at scale</li>
+    </ul>
+    <h4>Choose Tableau if:</h4>
+    <ul>
+      <li>You're targeting tech companies, consulting, or analyst roles</li>
+      <li>You need advanced visual customization and flexibility</li>
+    </ul>
+    <p>If you can only learn one, start with Power BI — then add Tableau. The core concepts transfer quickly between both.</p>`
+  },
+  {
+    tag: "SQL", date: "Mar 2025",
+    title: "Top SQL queries every Business Analyst uses daily",
+    excerpt: "The essential SQL patterns — from joins to window functions — that show up in real BA work every day.",
+    body: `<h4>1. GROUP BY aggregations</h4>
+    <p>The workhorse of analytics — summarizing transaction volumes, counts by category, or average values by segment.</p>
+    <h4>2. LEFT JOIN</h4>
+    <p>Essential for combining tables without dropping unmatched rows. Understanding join types separates good analysts from great ones.</p>
+    <h4>3. CASE WHEN</h4>
+    <p>For creating derived categories — bucketing loan amounts into tiers or flagging high-risk transactions.</p>
+    <h4>4. Window functions (ROW_NUMBER, RANK, LAG)</h4>
+    <p>Calculate rankings within groups, compare rows to previous rows, or identify first/last events per customer.</p>
+    <h4>5. CTEs (WITH clauses)</h4>
+    <p>Make complex multi-step queries readable and maintainable — used heavily in reporting and BI pipelines.</p>`
+  },
+  {
+    tag: "Banking", date: "Feb 2025",
+    title: "How banks use credit scoring models — a non-technical guide",
+    excerpt: "What actually happens when a bank decides whether to approve your loan application.",
+    body: `<p>Banks use a combination of bureau scores (FICO, VantageScore) and internally built scorecards. Bureau scores provide a standardized baseline, while internal models incorporate bank-specific data.</p>
+    <h4>Why banks use logistic regression, not deep learning</h4>
+    <p>Under ECOA and Fair Lending regulations, banks must explain every credit denial with specific adverse action reasons. Black-box models can't provide this — logistic regression remains dominant because it's interpretable by regulators and auditors.</p>`
+  },
+  {
+    tag: "Microsoft Fabric", date: "Jan 2025",
+    title: "What is Microsoft Fabric and why it matters for BI analysts",
+    excerpt: "Microsoft's new unified data platform and what it means for your day-to-day analytics work.",
+    body: `<p>Microsoft Fabric unifies data engineering, data warehousing, real-time analytics, data science, and Power BI into a single SaaS platform. The biggest shift is <strong>OneLake</strong> — a unified storage layer all Fabric workloads share.</p>
+    <h4>Should you learn it now?</h4>
+    <ul>
+      <li>If your org is on Azure and Power BI Premium — yes, start now</li>
+      <li>Microsoft Fabric certifications (DP-600) are already being requested in job postings</li>
+      <li>If you're in a Snowflake or Databricks shop — monitor but don't prioritize yet</li>
+    </ul>`
+  },
+  {
+    tag: "Operations Analytics", date: "Dec 2024",
+    title: "How operations analytics drives efficiency in banking",
+    excerpt: "How process mining, KPIs, and dashboards improve banking operations.",
+    body: `<p>Operations analytics focuses on reducing processing time, error rates, and cost-per-transaction across loan origination, KYC onboarding, and payment processing.</p>
+    <h4>Key operational KPIs in banking</h4>
+    <ul>
+      <li>STP rate — % of transactions processed without manual intervention</li>
+      <li>Average handling time (AHT) — time to complete a process step end-to-end</li>
+      <li>Error rate — % of transactions requiring rework</li>
+      <li>Cost per transaction — total operational cost divided by volume</li>
+    </ul>`
+  },
+  {
+    tag: "Career", date: "Nov 2024",
+    title: "From Business Analyst to Data Analyst — what skills do you need?",
+    excerpt: "A practical roadmap for BAs who want to transition into more data-heavy roles.",
+    body: `<h4>Skills you already have</h4>
+    <ul>
+      <li>Business domain knowledge — understanding what metrics matter and why</li>
+      <li>Stakeholder communication — translating findings into business language</li>
+      <li>Requirements gathering — knowing what questions to ask of data</li>
+    </ul>
+    <h4>Skills to build</h4>
+    <ul>
+      <li><strong>SQL (priority #1)</strong> — intermediate SQL: joins, window functions, CTEs</li>
+      <li><strong>Python basics</strong> — pandas for data manipulation, matplotlib for charting</li>
+      <li><strong>Statistics fundamentals</strong> — distributions, hypothesis testing, regression</li>
+    </ul>`
+  },
+  {
+    tag: "Data Strategy", date: "Oct 2024",
+    title: "What is a data-driven organization — and how do you build one?",
+    excerpt: "The cultural, technical, and structural elements that separate truly data-driven companies from those that just have dashboards.",
+    body: `<h4>Cultural hallmarks</h4>
+    <ul>
+      <li>Decisions are challenged with data, not just intuition — even by senior leaders</li>
+      <li>Data literacy is expected across functions, not just in the analytics team</li>
+      <li>Business teams can self-serve on data without always needing analyst support</li>
+    </ul>
+    <h4>The most common failure mode</h4>
+    <p>Organizations invest heavily in tooling but neglect data governance and literacy. The result: multiple "single sources of truth" that contradict each other, and leadership reverting to gut instinct because they don't trust the numbers.</p>`
+  },
+  {
+    tag: "Healthcare Analytics", date: "Sep 2024",
+    title: "How hospitals use data to reduce patient readmissions",
+    excerpt: "The predictive models and operational strategies hospitals use to keep patients from returning within 30 days.",
+    body: `<p>Under CMS's Hospital Readmissions Reduction Program (HRRP), hospitals face financial penalties for excessive readmissions — making readmission prediction a high-priority analytics use case.</p>
+    <h4>What data is used</h4>
+    <ul>
+      <li>EHR data — diagnosis codes, comorbidities, medication lists, vital signs</li>
+      <li>Social determinants of health — housing stability, transportation access</li>
+      <li>Prior utilization — number of ED visits and hospitalizations in the past 12 months</li>
+    </ul>
+    <p>Logistic regression and gradient boosted trees (XGBoost, LightGBM) are most widely used in production.</p>`
+  },
+];
+
+function renderBlog() {
+  const grid = document.getElementById('blog-grid');
+  if (!grid) return;
+  POSTS.forEach((post, i) => {
+    const bodyId = 'body-' + i;
+    const card = document.createElement('article');
+    card.className = 'post-card';
+    card.innerHTML = `
+      <div style="display:flex; align-items:center; justify-content:space-between;">
+        <span class="post-tag">${post.tag}</span>
+        <span class="post-date">${post.date}</span>
+      </div>
+      <div class="post-title">${post.title}</div>
+      <div class="post-excerpt">${post.excerpt}</div>
+      <div class="post-body" id="${bodyId}">${post.body}</div>
+      <span class="read-more" id="lbl-${i}">Read more ↓</span>
+    `;
+    card.addEventListener('click', () => {
+      const body = document.getElementById(bodyId);
+      const lbl = document.getElementById('lbl-' + i);
+      const isOpen = body.classList.contains('visible');
+      body.classList.toggle('visible', !isOpen);
+      card.classList.toggle('open', !isOpen);
+      lbl.textContent = isOpen ? 'Read more ↓' : 'Close ↑';
+    });
+    grid.appendChild(card);
+  });
+}
+
+/* ══════════════ YOUR EXISTING INDUSTRY DATA & FUNCTIONS STAY HERE ══════════════ */
+
 const INDUSTRIES = [
   {
     id: "finance",
@@ -641,7 +881,7 @@ const INDUSTRIES = [
     ],
     careers: [
       { title: "Energy data analyst", salary: "$70k – $115k", desc: "SQL, Python, Tableau, SCADA. Found at: utilities, energy retailers, grid operators." },
-      { title: "Power systems engineer / analyst", desc: "MATLAB, load flow analysis, PSSE. Found at: utilities, ISOs, engineering consultancies.", salary: "$90k – $150k" },
+      { title: "Power systems engineer / analyst", salary: "$90k – $150k", desc: "MATLAB, load flow analysis, PSSE. Found at: utilities, ISOs, engineering consultancies." },
       { title: "Renewable energy analyst", salary: "$80k – $130k", desc: "GIS, pvlib/windpowerlib, financial modeling. Found at: developers, IPPs, banks." },
       { title: "Carbon & ESG analyst", salary: "$75k – $125k", desc: "GHG accounting, LCA, sustainability reporting. Found at: corporates, consultancies." },
       { title: "Energy data scientist", salary: "$100k – $160k", desc: "Forecasting, anomaly detection, Python/ML. Found at: utilities, smart grid startups." },
@@ -882,86 +1122,33 @@ const INDUSTRIES = [
 
 function buildPanel(ind) {
   const root = document.getElementById('panel-root');
-
   const panel = document.createElement('div');
   panel.className = 'panel';
   panel.style.setProperty('--ind-color', ind.color);
-
-  // Header
   const hdr = document.createElement('div');
   hdr.className = 'panel-header';
-  hdr.innerHTML = `
-    <div class="panel-icon" style="background:${ind.colorLight}; color:${ind.color}; font-size:22px;">${ind.icon}</div>
-    <div>
-      <div class="panel-title">${ind.title}</div>
-      <div class="panel-desc">${ind.desc}</div>
-    </div>
-  `;
+  hdr.innerHTML = `<div class="panel-icon" style="background:${ind.colorLight}; color:${ind.color}; font-size:22px;">${ind.icon}</div><div><div class="panel-title">${ind.title}</div><div class="panel-desc">${ind.desc}</div></div>`;
   panel.appendChild(hdr);
-
-  // Methods
-  const ms = document.createElement('div');
-  ms.className = 'methods-section';
+  const ms = document.createElement('div'); ms.className = 'methods-section';
   ms.innerHTML = `<div class="section-label">Analysis methods</div>`;
   const mg = document.createElement('div'); mg.className = 'methods-grid';
-  ind.methods.forEach(m => {
-    const c = document.createElement('div'); c.className = 'method-card';
-    c.innerHTML = `<div class="method-name">${m.name}</div><div class="method-desc">${m.desc}</div>`;
-    mg.appendChild(c);
-  });
-  ms.appendChild(mg);
-  panel.appendChild(ms);
-
-  // Tools
-  const ts = document.createElement('div');
-  ts.className = 'tools-section';
+  ind.methods.forEach(m => { const c = document.createElement('div'); c.className = 'method-card'; c.innerHTML = `<div class="method-name">${m.name}</div><div class="method-desc">${m.desc}</div>`; mg.appendChild(c); });
+  ms.appendChild(mg); panel.appendChild(ms);
+  const ts = document.createElement('div'); ts.className = 'tools-section';
   ts.innerHTML = `<div class="section-label">Tools & technologies</div>`;
   const tg = document.createElement('div'); tg.className = 'tools-grid';
-  ind.tools.forEach(t => {
-    const c = document.createElement('div'); c.className = 'tool-card';
-    c.innerHTML = `
-      <div class="tool-badge" style="background:${t.badgeBg};color:${t.badgeText};">${t.badge}</div>
-      <div class="tool-name">${t.name}</div>
-      <div class="tool-desc">${t.desc}</div>
-    `;
-    tg.appendChild(c);
-  });
-  ts.appendChild(tg);
-  panel.appendChild(ts);
-
-  // Datasets
-  const ds = document.createElement('div');
-  ds.className = 'datasets-section';
+  ind.tools.forEach(t => { const c = document.createElement('div'); c.className = 'tool-card'; c.innerHTML = `<div class="tool-badge" style="background:${t.badgeBg};color:${t.badgeText};">${t.badge}</div><div class="tool-name">${t.name}</div><div class="tool-desc">${t.desc}</div>`; tg.appendChild(c); });
+  ts.appendChild(tg); panel.appendChild(ts);
+  const ds = document.createElement('div'); ds.className = 'datasets-section';
   ds.innerHTML = `<div class="section-label">Key datasets</div>`;
-  ind.datasets.forEach(d => {
-    const row = document.createElement('div'); row.className = 'dataset-row';
-    row.innerHTML = `
-      <div class="ds-dot" style="background:${ind.color};"></div>
-      <div><div class="ds-name">${d.name}</div><div class="ds-desc">${d.desc}</div></div>
-    `;
-    ds.appendChild(row);
-  });
+  ind.datasets.forEach(d => { const row = document.createElement('div'); row.className = 'dataset-row'; row.innerHTML = `<div class="ds-dot" style="background:${ind.color};"></div><div><div class="ds-name">${d.name}</div><div class="ds-desc">${d.desc}</div></div>`; ds.appendChild(row); });
   panel.appendChild(ds);
-
-  // Careers
-  const cs = document.createElement('div');
-  cs.className = 'careers-section';
+  const cs = document.createElement('div'); cs.className = 'careers-section';
   cs.innerHTML = `<div class="section-label">Career paths</div>`;
   const cg = document.createElement('div'); cg.className = 'careers-grid';
-  ind.careers.forEach(c => {
-    const card = document.createElement('div'); card.className = 'career-card';
-    card.innerHTML = `
-      <div class="career-title">${c.title}</div>
-      <div class="career-salary" style="color:${ind.salaryColor};">${c.salary}</div>
-      <div class="career-skills">${c.desc}</div>
-    `;
-    cg.appendChild(card);
-  });
-  cs.appendChild(cg);
-  panel.appendChild(cs);
-
-  root.innerHTML = '';
-  root.appendChild(panel);
+  ind.careers.forEach(c => { const card = document.createElement('div'); card.className = 'career-card'; card.innerHTML = `<div class="career-title">${c.title}</div><div class="career-salary" style="color:${ind.salaryColor};">${c.salary}</div><div class="career-skills">${c.desc}</div>`; cg.appendChild(card); });
+  cs.appendChild(cg); panel.appendChild(cs);
+  root.innerHTML = ''; root.appendChild(panel);
 }
 
 function initTabs() {
@@ -981,10 +1168,8 @@ function initTabs() {
 }
 
 initTabs();
-  function togglePost(id) {
-  const el = document.getElementById(id);
-  el.style.display = el.style.display === 'none' ? 'block' : 'none';
-}
+renderBlog();
+
 </script>
 </body>
 </html>
