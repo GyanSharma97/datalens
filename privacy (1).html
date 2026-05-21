@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <!-- Google Analytics -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-Z2LC7N2TJD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){ dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-Z2LC7N2TJD');
+  </script>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Privacy Policy — DataLens</title>
+  <meta name="description" content="Privacy policy for DataLens — how we collect, use, and protect your information." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,300;0,9..40,400;0,9..40,500;1,9..40,300&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    :root {
+      --bg: #fafaf8;
+      --bg-card: #ffffff;
+      --bg-surface: #f3f2ee;
+      --bg-accent: #eceae3;
+      --text-primary: #1a1917;
+      --text-secondary: #6b6860;
+      --text-tertiary: #a09e99;
+      --border: rgba(26,25,23,0.1);
+      --border-strong: rgba(26,25,23,0.2);
+      --accent: #185FA5;
+      --accent-light: #E6F1FB;
+      --accent-text: #0C447C;
+      --ff-display: 'DM Serif Display', serif;
+      --ff-body: 'DM Sans', sans-serif;
+      --radius-sm: 8px;
+      --radius-md: 12px;
+      --radius-lg: 16px;
+    }
+    html { scroll-behavior: smooth; }
+    body { font-family: var(--ff-body); background: var(--bg); color: var(--text-primary); font-size: 15px; line-height: 1.6; min-height: 100vh; }
+
+    /* NAV */
+    nav {
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(250,250,248,0.92);
+      backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px);
+      border-bottom: 0.5px solid var(--border);
+      padding: 0 2rem;
+      display: flex; align-items: center; justify-content: space-between;
+      height: 56px;
+    }
+    .nav-logo { font-family: var(--ff-display); font-size: 20px; color: var(--text-primary); text-decoration: none; letter-spacing: -0.01em; }
+    .nav-logo span { color: var(--accent); }
+    .nav-right { display: flex; align-items: center; gap: 1rem; }
+    .nav-tag { font-size: 11px; font-weight: 500; letter-spacing: 0.07em; text-transform: uppercase; color: var(--text-tertiary); }
+    .nav-btn { font-size: 13px; font-weight: 500; color: var(--accent); background: transparent; border: 0.5px solid var(--accent); padding: 5px 14px; border-radius: 999px; cursor: pointer; font-family: var(--ff-body); text-decoration: none; transition: background 0.15s; }
+    .nav-btn:hover { background: var(--accent-light); }
+
+    /* HERO */
+    .privacy-hero { max-width: 720px; margin: 0 auto; padding: 5rem 2rem 2.5rem; }
+    .privacy-eyebrow { font-size: 11px; font-weight: 500; letter-spacing: 0.09em; text-transform: uppercase; color: var(--accent); margin-bottom: 1rem; display: flex; align-items: center; gap: 6px; }
+    .privacy-eyebrow::before { content: ''; display: block; width: 20px; height: 1px; background: var(--accent); }
+    .privacy-hero h1 { font-family: var(--ff-display); font-size: clamp(32px, 5vw, 48px); font-weight: 400; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 10px; }
+    .privacy-hero p { font-size: 14px; color: var(--text-secondary); line-height: 1.6; }
+
+    /* CONTENT */
+    .privacy-content { max-width: 720px; margin: 0 auto; padding: 2rem 2rem 5rem; }
+
+    .privacy-block { border: 0.5px solid var(--border); border-radius: var(--radius-lg); background: var(--bg-card); overflow: hidden; margin-bottom: 10px; }
+    .privacy-block-hdr {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 1.1rem 1.5rem; cursor: pointer; transition: background 0.15s;
+    }
+    .privacy-block-hdr:hover { background: var(--bg-surface); }
+    .privacy-block-hdr h3 { font-size: 14px; font-weight: 500; color: var(--text-primary); display: flex; align-items: center; gap: 10px; }
+    .privacy-block-hdr h3 .icon { font-size: 16px; color: var(--accent); }
+    .chevron { font-size: 11px; color: var(--text-tertiary); transition: transform 0.2s; flex-shrink: 0; }
+    .privacy-block-hdr.open .chevron { transform: rotate(180deg); }
+    .privacy-block-body { display: none; padding: 0 1.5rem 1.5rem; border-top: 0.5px solid var(--border); }
+    .privacy-block-body.visible { display: block; animation: fadeSlide 0.18s ease; }
+    .privacy-block-body p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-top: 1rem; }
+    .privacy-block-body ul { padding-left: 1.2rem; margin-top: 0.75rem; }
+    .privacy-block-body ul li { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 6px; }
+    .privacy-block-body strong { color: var(--text-primary); font-weight: 500; }
+    .privacy-block-body a { color: var(--accent); }
+
+    .privacy-contact {
+      background: var(--accent-light); border-radius: var(--radius-lg);
+      padding: 1.5rem; margin-top: 1.5rem;
+      display: flex; align-items: flex-start; gap: 12px;
+    }
+    .privacy-contact-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 5px; flex-shrink: 0; }
+    .privacy-contact p { font-size: 13px; color: var(--accent-text); line-height: 1.6; }
+    .privacy-contact a { color: var(--accent); font-weight: 500; }
+
+    @keyframes fadeSlide { from { opacity: 0; transform: translateY(4px); } to { opacity: 1; transform: translateY(0); } }
+
+    /* FOOTER */
+    footer { max-width: 860px; margin: 0 auto; padding: 2rem 2rem 3rem; border-top: 0.5px solid var(--border); display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 1rem; }
+    .footer-logo { font-family: var(--ff-display); font-size: 18px; color: var(--text-primary); text-decoration: none; }
+    .footer-logo span { color: var(--accent); }
+    .footer-links { display: flex; gap: 1.5rem; align-items: center; }
+    .footer-link { font-size: 12px; color: var(--text-secondary); text-decoration: none; transition: color 0.15s; }
+    .footer-link:hover { color: var(--accent); }
+    .footer-note { font-size: 12px; color: var(--text-tertiary); }
+
+    @media (max-width: 600px) {
+      .privacy-hero, .privacy-content { padding-left: 1.25rem; padding-right: 1.25rem; }
+      .privacy-hero { padding-top: 3rem; }
+      .nav-tag { display: none; }
+      footer { padding: 1.5rem 1.25rem 2.5rem; }
+    }
+  </style>
+</head>
+<body>
+
+<nav>
+  <a class="nav-logo" href="index.html">Data<span>Lens</span></a>
+  <div class="nav-right">
+    <span class="nav-tag">Industry Analysis Guide</span>
+    <a class="nav-btn" href="index.html">← Home</a>
+  </div>
+</nav>
+
+<div class="privacy-hero">
+  <div class="privacy-eyebrow">Legal</div>
+  <h1>Privacy Policy</h1>
+  <p>Last updated: May 2025 · This policy explains how DataLens collects, uses, and protects your information when you visit this website.</p>
+</div>
+
+<div class="privacy-content">
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="toggle(this)">
+      <h3><span class="icon">◈</span> Information we collect</h3>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>DataLens is a static informational website. We do not have user accounts, login forms, or collect any personally identifiable information directly. The following data may be collected automatically:</p>
+      <ul>
+        <li><strong>Usage data</strong> — pages visited, time spent, tabs clicked, and navigation patterns via Google Analytics 4.</li>
+        <li><strong>Device data</strong> — browser type, operating system, screen resolution, and device category (desktop/mobile).</li>
+        <li><strong>Location data</strong> — approximate country and city inferred from your IP address (not stored by us directly).</li>
+        <li><strong>Referral data</strong> — the website or search engine that referred you to DataLens.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="toggle(this)">
+      <h3><span class="icon">◎</span> How we use your information</h3>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>The data collected is used solely to understand how visitors interact with the website and to improve its content and structure. Specifically:</p>
+      <ul>
+        <li>To see which industry tabs, blog posts, and sections are most popular.</li>
+        <li>To understand where our visitors come from and what devices they use.</li>
+        <li>To improve content quality, navigation, and site performance over time.</li>
+        <li>To measure the overall reach and growth of the website.</li>
+      </ul>
+      <p>We do <strong>not</strong> use your data for advertising, profiling, remarketing, or sell it to any third parties.</p>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="toggle(this)">
+      <h3><span class="icon">◇</span> Google Analytics</h3>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>This website uses <strong>Google Analytics 4 (GA4)</strong> to collect anonymous usage statistics. GA4 uses cookies and similar tracking technologies to measure user interactions.</p>
+      <ul>
+        <li>Google may process your data on servers located outside your country.</li>
+        <li>GA4 data is anonymized and aggregated — we cannot identify individual users.</li>
+        <li>Google's data processing is governed by <a href="https://policies.google.com/privacy" target="_blank">Google's Privacy Policy</a>.</li>
+        <li>You can opt out via the <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">Google Analytics Opt-out Browser Add-on</a>.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="toggle(this)">
+      <h3><span class="icon">◉</span> Cookies</h3>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>DataLens itself does not set any first-party cookies. Google Analytics sets the following cookies on your device:</p>
+      <ul>
+        <li><strong>_ga</strong> — distinguishes unique users. Expires after 2 years.</li>
+        <li><strong>_ga_XXXXXXX</strong> — maintains session state. Expires after 2 years.</li>
+        <li><strong>_gid</strong> — distinguishes users. Expires after 24 hours.</li>
+      </ul>
+      <p>You can manage or delete cookies through your browser settings at any time. Disabling cookies may affect how some parts of the site function.</p>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="toggle(this)">
+      <h3><span class="icon">◫</span> Data retention</h3>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>Analytics data is retained in Google Analytics for <strong>14 months</strong> by default, after which it is automatically deleted. We do not store any analytics data on our own servers. Since DataLens is a static website hosted on GitHub Pages, no user data is stored in any database by us directly.</p>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="toggle(this)">
+      <h3><span class="icon">◑</span> Third-party links</h3>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>DataLens may contain links to external websites including LinkedIn, GitHub, and other resources. We are not responsible for the privacy practices or content of those external sites. We encourage you to review the privacy policies of any third-party sites you visit.</p>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="toggle(this)">
+      <h3><span class="icon">◁</span> Your rights</h3>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>Depending on your location, you may have the following rights regarding your data:</p>
+      <ul>
+        <li><strong>Right to access</strong> — request information about what data is collected about you.</li>
+        <li><strong>Right to deletion</strong> — request that your data be deleted.</li>
+        <li><strong>Right to opt-out</strong> — opt out of analytics tracking using the Google opt-out tool.</li>
+        <li><strong>GDPR (EU users)</strong> — rights including access, rectification, and erasure under GDPR.</li>
+        <li><strong>CCPA (California users)</strong> — right to know what personal information is collected and to request deletion.</li>
+      </ul>
+      <p>Since we collect no personally identifiable information directly, most data-related requests should be directed to Google Analytics.</p>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div class="privacy-block-hdr" onclick="toggle(this)">
+      <h3><span class="icon">◔</span> Changes to this policy</h3>
+      <span class="chevron">▼</span>
+    </div>
+    <div class="privacy-block-body">
+      <p>We may update this Privacy Policy from time to time to reflect changes in our practices or for legal reasons. When we do, we will update the "Last updated" date at the top of this page. Continued use of the website after changes are posted constitutes your acceptance of the updated policy.</p>
+    </div>
+  </div>
+
+  <div class="privacy-contact">
+    <div class="privacy-contact-dot"></div>
+    <p>If you have any questions about this Privacy Policy, please reach out via <a href="https://www.linkedin.com/in/gyansharma695/" target="_blank">LinkedIn</a> or email <a href="mailto:gyansharma2017@outlook.com">gyansharma2017@outlook.com</a>. We aim to respond within 5 business days.</p>
+  </div>
+
+</div>
+
+<footer>
+  <a class="footer-logo" href="index.html">Data<span>Lens</span></a>
+  <div class="footer-links">
+    <a class="footer-link" href="index.html">Home</a>
+    <a class="footer-link" href="blog.html">Blog</a>
+    <a class="footer-link" href="privacy.html">Privacy Policy</a>
+    <a class="footer-link" href="https://www.linkedin.com/in/gyansharma695/" target="_blank">LinkedIn</a>
+  </div>
+  <div class="footer-note">Built by Gyanendu Sharma</div>
+</footer>
+
+<script>
+function toggle(hdr) {
+  const body = hdr.nextElementSibling;
+  const isOpen = hdr.classList.contains('open');
+  document.querySelectorAll('.privacy-block-hdr').forEach(h => h.classList.remove('open'));
+  document.querySelectorAll('.privacy-block-body').forEach(b => b.classList.remove('visible'));
+  if (!isOpen) { hdr.classList.add('open'); body.classList.add('visible'); }
+}
+</script>
+</body>
+</html>
