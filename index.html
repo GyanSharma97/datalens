@@ -1,3 +1,6 @@
+Datalens
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -24,8 +27,8 @@
       --bg-surface: #f3f2ee;
       --bg-accent: #eceae3;
       --text-primary: #1a1917;
-      --text-secondary: #6b6860;
-      --text-tertiary: #a09e99;
+      --text-secondary: #5f5c54;
+      --text-tertiary: #8a8780;
       --border: rgba(26,25,23,0.1);
       --border-strong: rgba(26,25,23,0.2);
       --accent: #185FA5;
@@ -37,11 +40,11 @@
       --radius-lg: 16px;
     }
 
-    html { scroll-behavior: smooth; }
+    html { scroll-behavior: smooth; background: var(--bg); }
 
     body {
       font-family: var(--ff-body);
-      background: var(--bg);
+      background: transparent;
       color: var(--text-primary);
       font-size: 15px;
       line-height: 1.6;
@@ -53,7 +56,7 @@
       position: sticky;
       top: 0;
       z-index: 100;
-      background: rgba(250,250,248,0.92);
+      background: var(--nav-bg, rgba(250,250,248,0.92));
       backdrop-filter: blur(12px);
       -webkit-backdrop-filter: blur(12px);
       border-bottom: 0.5px solid var(--border);
@@ -205,9 +208,9 @@
       margin-bottom: 4px;
     }
     .panel-desc {
-      font-size: 14px;
+      font-size: 15px;
       color: var(--text-secondary);
-      line-height: 1.55;
+      line-height: 1.6;
       max-width: 600px;
     }
 
@@ -256,9 +259,9 @@
       flex-shrink: 0;
     }
     .method-desc {
-      font-size: 12px;
+      font-size: 13px;
       color: var(--text-secondary);
-      line-height: 1.5;
+      line-height: 1.55;
     }
 
     /* ── TOOLS ── */
@@ -284,8 +287,8 @@
       border-radius: 999px;
       margin-bottom: 6px;
     }
-    .tool-name { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
-    .tool-desc { font-size: 11px; color: var(--text-secondary); line-height: 1.45; }
+    .tool-name { font-size: 13.5px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+    .tool-desc { font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; }
 
     /* ── DATASETS ── */
     .datasets-section { padding: 1.5rem 2rem; border-bottom: 0.5px solid var(--border); }
@@ -297,8 +300,8 @@
     }
     .dataset-row:last-child { border-bottom: none; }
     .ds-dot { width: 6px; height: 6px; border-radius: 50%; margin-top: 6px; flex-shrink: 0; }
-    .ds-name { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
-    .ds-desc { font-size: 12px; color: var(--text-secondary); line-height: 1.45; }
+    .ds-name { font-size: 13.5px; font-weight: 500; color: var(--text-primary); margin-bottom: 2px; }
+    .ds-desc { font-size: 13px; color: var(--text-secondary); line-height: 1.55; }
 
     /* ── CAREERS ── */
     .careers-section { padding: 1.5rem 2rem; }
@@ -315,9 +318,9 @@
       transition: background 0.15s;
     }
     .career-card:hover { background: var(--bg-accent); }
-    .career-title { font-size: 13px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
-    .career-salary { font-size: 12px; font-weight: 500; margin-bottom: 6px; }
-    .career-skills { font-size: 11px; color: var(--text-secondary); line-height: 1.5; }
+    .career-title { font-size: 13.5px; font-weight: 500; color: var(--text-primary); margin-bottom: 4px; }
+    .career-salary { font-size: 12.5px; font-weight: 600; margin-bottom: 6px; }
+    .career-skills { font-size: 12.5px; color: var(--text-secondary); line-height: 1.55; }
 
     /* ── FOOTER ── */
     footer {
@@ -353,16 +356,16 @@
     .post-card:hover { background: var(--bg-surface); }
     .post-card.open { border-color: var(--accent); }
     .post-tag { font-size: 11px; font-weight: 500; padding: 3px 10px; border-radius: 999px; background: var(--bg-surface); color: var(--text-secondary); }
-    .post-date { font-size: 11px; color: var(--text-tertiary); }
-    .post-title { font-size: 14px; font-weight: 500; color: var(--text-primary); line-height: 1.4; }
-    .post-excerpt { font-size: 12px; color: var(--text-secondary); line-height: 1.55; }
+    .post-date { font-size: 12px; color: var(--text-tertiary); }
+    .post-title { font-size: 15px; font-weight: 600; color: var(--text-primary); line-height: 1.4; }
+    .post-excerpt { font-size: 13.5px; color: var(--text-secondary); line-height: 1.6; }
     .post-body { display: none; border-top: 0.5px solid var(--border); padding-top: 12px; margin-top: 4px; }
     .post-body.visible { display: block; animation: fadeSlide 0.2s ease; }
-    .post-body p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 10px; }
+    .post-body p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; margin-bottom: 10px; }
     .post-body p:last-child { margin-bottom: 0; }
     .post-body h4 { font-size: 13px; font-weight: 500; color: var(--text-primary); margin: 12px 0 6px; }
     .post-body ul { padding-left: 1.2rem; }
-    .post-body ul li { font-size: 13px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 4px; }
+    .post-body ul li { font-size: 14px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 4px; }
     .read-more { font-size: 12px; color: var(--accent); font-weight: 500; margin-top: auto; }
 
     /* ── PRIVACY PAGE ── */
@@ -379,15 +382,66 @@
     .privacy-block-hdr.open .chevron { transform: rotate(180deg); }
     .privacy-block-body { display: none; padding: 0 1.5rem 1.25rem; border-top: 0.5px solid var(--border); }
     .privacy-block-body.visible { display: block; animation: fadeSlide 0.18s ease; }
-    .privacy-block-body p { font-size: 13px; color: var(--text-secondary); line-height: 1.7; margin-top: 1rem; }
+    .privacy-block-body p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; margin-top: 1rem; }
     .privacy-block-body ul { padding-left: 1.2rem; margin-top: 0.75rem; }
-    .privacy-block-body ul li { font-size: 13px; color: var(--text-secondary); line-height: 1.65; margin-bottom: 5px; }
+    .privacy-block-body ul li { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 5px; }
     .privacy-block-body strong { color: var(--text-primary); font-weight: 500; }
     .privacy-contact { background: var(--accent-light); border-radius: var(--radius-lg); padding: 1.5rem; margin-top: 1.5rem; display: flex; align-items: flex-start; gap: 12px; }
     .privacy-contact-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); margin-top: 5px; flex-shrink: 0; }
     .privacy-contact p { font-size: 13px; color: var(--accent-text, #0C447C); line-height: 1.6; }
     .privacy-contact a { color: var(--accent); font-weight: 500; }  
-    
+
+    /* ── ARTICLE PAGE ── */
+    .article-wrap { max-width: 720px; margin: 0 auto; padding: 3.5rem 2rem 4rem; }
+    .article-back { display: inline-flex; align-items: center; gap: 5px; font-size: 13px; color: var(--accent); font-weight: 500; cursor: pointer; text-decoration: none; }
+    .article-back:hover { text-decoration: underline; }
+    .article-meta { display: flex; align-items: center; gap: 10px; margin: 1.75rem 0 1rem; }
+    .article-title { font-family: var(--ff-display); font-size: clamp(28px, 4.5vw, 42px); font-weight: 400; line-height: 1.14; letter-spacing: -0.02em; color: var(--text-primary); margin-bottom: 1rem; }
+    .article-lede { font-size: 17px; color: var(--text-secondary); line-height: 1.6; margin-bottom: 2rem; padding-bottom: 1.5rem; border-bottom: 0.5px solid var(--border); }
+    .article-body p { font-size: 15px; color: var(--text-secondary); line-height: 1.8; margin-bottom: 1rem; }
+    .article-body h4 { font-size: 16px; font-weight: 500; color: var(--text-primary); margin: 1.75rem 0 0.6rem; }
+    .article-body ul { padding-left: 1.3rem; margin-bottom: 1rem; }
+    .article-body ul li { font-size: 15px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 6px; }
+    .article-body strong { color: var(--text-primary); font-weight: 500; }
+
+    /* ── TWEAKS PANEL ── */
+    .tw-toggle { position: fixed; right: 18px; bottom: 18px; z-index: 300; display: inline-flex; align-items: center; gap: 8px; padding: 9px 15px; border-radius: 999px; border: 0.5px solid var(--border-strong); background: var(--bg-card); color: var(--text-primary); font-family: var(--ff-body); font-size: 13px; font-weight: 500; cursor: pointer; box-shadow: 0 4px 18px rgba(0,0,0,0.10); transition: transform .15s ease, box-shadow .15s ease; }
+    .tw-toggle:hover { transform: translateY(-1px); box-shadow: 0 6px 22px rgba(0,0,0,0.15); }
+    .tw-gear { width: 13px; height: 13px; border-radius: 50%; border: 2px solid var(--accent); box-sizing: border-box; flex-shrink: 0; }
+    .tw-panel { position: fixed; right: 18px; bottom: 66px; z-index: 301; width: 300px; max-width: calc(100vw - 36px); background: var(--bg-card); border: 0.5px solid var(--border); border-radius: var(--radius-lg); box-shadow: 0 16px 50px rgba(0,0,0,0.22); padding: 1.1rem 1.1rem 1.25rem; opacity: 0; transform: translateY(10px) scale(0.98); transform-origin: bottom right; pointer-events: none; transition: opacity .18s ease, transform .18s ease; }
+    .tw-panel.open { opacity: 1; transform: none; pointer-events: auto; }
+    .tw-panel-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.95rem; }
+    .tw-panel-hdr h4 { font-family: var(--ff-display); font-size: 18px; font-weight: 400; color: var(--text-primary); }
+    .tw-close { background: transparent; border: none; color: var(--text-tertiary); font-size: 20px; line-height: 1; cursor: pointer; padding: 0 2px; }
+    .tw-close:hover { color: var(--text-primary); }
+    .tw-section { margin-bottom: 0.95rem; }
+    .tw-section:last-child { margin-bottom: 0; }
+    .tw-label { font-size: 10px; font-weight: 500; letter-spacing: 0.1em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 7px; }
+    .tw-seg { display: grid; grid-template-columns: repeat(auto-fit, minmax(62px, 1fr)); gap: 5px; }
+    .tw-seg button { padding: 7px 6px; border-radius: 999px; border: 0.5px solid var(--border-strong); background: var(--bg); color: var(--text-secondary); font-family: var(--ff-body); font-size: 11.5px; font-weight: 500; cursor: pointer; transition: all .15s ease; white-space: nowrap; }
+    .tw-seg button:hover { border-color: var(--accent); color: var(--text-primary); }
+    .tw-seg button.active { background: var(--accent); color: #fff; border-color: var(--accent); }
+
+    /* ── ATMOSPHERE (futuristic backdrop) ── */
+    #atmo { position: fixed; inset: 0; z-index: -1; pointer-events: none; overflow: hidden; opacity: 0; transition: opacity .5s ease; }
+    html[data-atmo="grid"] #atmo, html[data-atmo="aurora"] #atmo { opacity: 1; }
+    html[data-atmo="grid"] #atmo {
+      background-image:
+        linear-gradient(var(--grid-line, rgba(120,140,180,0.16)) 1px, transparent 1px),
+        linear-gradient(90deg, var(--grid-line, rgba(120,140,180,0.16)) 1px, transparent 1px);
+      background-size: 46px 46px;
+      -webkit-mask-image: radial-gradient(circle at 50% 22%, #000 0%, transparent 72%);
+      mask-image: radial-gradient(circle at 50% 22%, #000 0%, transparent 72%);
+    }
+    #atmo .blob { position: absolute; border-radius: 50%; filter: blur(95px); opacity: 0; transition: opacity .5s ease; will-change: transform; }
+    html[data-atmo="aurora"] #atmo .blob { opacity: 0.6; }
+    #atmo .blob.b1 { width: 46vw; height: 46vw; top: -12vw; left: -8vw; background: var(--glow-1, #38e1d6); animation: blobDrift1 26s ease-in-out infinite; }
+    #atmo .blob.b2 { width: 40vw; height: 40vw; top: -6vw; right: -6vw; background: var(--glow-2, #7c6bff); animation: blobDrift2 32s ease-in-out infinite; }
+    #atmo .blob.b3 { width: 34vw; height: 34vw; bottom: -14vw; left: 32vw; background: var(--glow-3, #2f7bff); animation: blobDrift1 38s ease-in-out infinite reverse; }
+    @keyframes blobDrift1 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(6vw, 5vw) scale(1.12); } }
+    @keyframes blobDrift2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-7vw, 6vw) scale(1.08); } }
+    @media (prefers-reduced-motion: reduce) { #atmo .blob { animation: none !important; } }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .hero { padding: 3rem 1.25rem 2rem; }
@@ -398,8 +452,6 @@
     }
   </style>
 </head>
-<body>
-
 <body>
 
 <!-- ══════════════════ HOME PAGE ══════════════════ -->
@@ -426,9 +478,12 @@
 
 <!-- BLOG SECTION -->
 <section id="blog" style="max-width:860px; margin:0 auto; padding:0 2rem 4rem;">
-  <div style="border-top:0.5px solid var(--border); padding-top:3rem; margin-bottom:2rem;">
-    <p style="font-size:11px; font-weight:500; letter-spacing:0.09em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:8px;">From the blog</p>
-    <h2 style="font-family:var(--ff-display); font-size:32px; font-weight:400; color:var(--text-primary); letter-spacing:-0.02em;">Latest articles</h2>
+  <div style="border-top:0.5px solid var(--border); padding-top:3rem; margin-bottom:2rem; display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
+    <div>
+      <p style="font-size:11px; font-weight:500; letter-spacing:0.09em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:8px;">From the blog</p>
+      <h2 style="font-family:var(--ff-display); font-size:32px; font-weight:400; color:var(--text-primary); letter-spacing:-0.02em;">Latest articles</h2>
+    </div>
+    <span onclick="scrollToBlog()" style="font-size:13px; font-weight:500; color:var(--accent); cursor:pointer; white-space:nowrap;">View all articles →</span>
   </div>
   <div id="blog-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px;"></div>
 </section>
@@ -571,18 +626,146 @@
 
 </div><!-- end page-privacy -->
 
+<!-- ══════════════════ BLOG INDEX PAGE ══════════════════ -->
+<div id="page-blog" class="page">
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer;">Data<span>Lens</span></div>
+  <div style="display:flex; align-items:center; gap:1rem;">
+    <span class="nav-tag">Industry Analysis Guide</span>
+    <button onclick="showPage('home')" style="font-size:13px; font-weight:500; color:var(--accent); background:transparent; border:0.5px solid var(--accent); padding:5px 14px; border-radius:999px; cursor:pointer; font-family:var(--ff-body);">← Home</button>
+  </div>
+</nav>
+
+<div class="privacy-hero">
+  <p style="font-size:11px;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">From the blog</p>
+  <h1>Articles</h1>
+  <p>Practical, no-fluff guides on how data is analyzed across industries — the methods, tools, and careers behind the work.</p>
+</div>
+
+<section style="max-width:860px; margin:0 auto; padding:0 2rem 4rem;">
+  <div id="blog-index-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px;"></div>
+</section>
+
+<footer>
+  <div class="footer-logo" onclick="showPage('home')" style="cursor:pointer;">Data<span>Lens</span></div>
+  <div style="display:flex; gap:1.5rem;">
+    <span style="font-size:12px; color:var(--text-secondary); cursor:pointer;" onclick="showPage('home')">Home</span>
+    <span style="font-size:12px; color:var(--text-secondary); cursor:pointer;" onclick="showPage('privacy')">Privacy Policy</span>
+    <a href="https://www.linkedin.com/in/gyansharma695/" target="_blank" style="font-size:12px; color:var(--text-secondary); text-decoration:none;">LinkedIn</a>
+  </div>
+  <div class="footer-note">Built by Gyanendu Sharma</div>
+</footer>
+
+</div><!-- end page-blog -->
+
+<!-- ══════════════════ BLOG POST PAGE ══════════════════ -->
+<div id="page-post" class="page">
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer;">Data<span>Lens</span></div>
+  <div style="display:flex; align-items:center; gap:1rem;">
+    <span class="nav-tag">Industry Analysis Guide</span>
+    <button onclick="scrollToBlog()" style="font-size:13px; font-weight:500; color:var(--accent); background:transparent; border:0.5px solid var(--accent); padding:5px 14px; border-radius:999px; cursor:pointer; font-family:var(--ff-body);">← All articles</button>
+  </div>
+</nav>
+
+<article class="article-wrap" id="post-root"></article>
+
+<footer>
+  <div class="footer-logo" onclick="showPage('home')" style="cursor:pointer;">Data<span>Lens</span></div>
+  <div style="display:flex; gap:1.5rem;">
+    <span style="font-size:12px; color:var(--text-secondary); cursor:pointer;" onclick="showPage('home')">Home</span>
+    <span style="font-size:12px; color:var(--text-secondary); cursor:pointer;" onclick="scrollToBlog()">Blog</span>
+    <span style="font-size:12px; color:var(--text-secondary); cursor:pointer;" onclick="showPage('privacy')">Privacy Policy</span>
+  </div>
+  <div class="footer-note">Built by Gyanendu Sharma</div>
+</footer>
+
+</div><!-- end page-post -->
+
+<!-- ══════════════════ ATMOSPHERE BACKDROP ══════════════════ -->
+<div id="atmo" aria-hidden="true"><span class="blob b1"></span><span class="blob b2"></span><span class="blob b3"></span></div>
+
+<!-- ══════════════════ TWEAKS PANEL ══════════════════ -->
+<button class="tw-toggle" id="twToggle" aria-label="Customize appearance"><span class="tw-gear"></span>Theme</button>
+<div class="tw-panel" id="twPanel" role="dialog" aria-label="Appearance">
+  <div class="tw-panel-hdr">
+    <h4>Appearance</h4>
+    <button class="tw-close" id="twClose" aria-label="Close">×</button>
+  </div>
+  <div class="tw-section">
+    <div class="tw-label">Palette</div>
+    <div class="tw-seg" data-tw="palette">
+      <button data-val="warmpaper">Paper</button>
+      <button data-val="coolslate">Slate</button>
+      <button data-val="midnight">Midnight</button>
+      <button data-val="aurora">Aurora</button>
+    </div>
+  </div>
+  <div class="tw-section">
+    <div class="tw-label">Typeface</div>
+    <div class="tw-seg" data-tw="type">
+      <button data-val="editorial">Editorial</button>
+      <button data-val="technical">Technical</button>
+      <button data-val="refined">Refined</button>
+      <button data-val="geometric">Futuristic</button>
+    </div>
+  </div>
+  <div class="tw-section">
+    <div class="tw-label">Edges</div>
+    <div class="tw-seg" data-tw="edges">
+      <button data-val="sharp">Sharp</button>
+      <button data-val="soft">Soft</button>
+      <button data-val="rounded">Rounded</button>
+    </div>
+  </div>
+  <div class="tw-section">
+    <div class="tw-label">Atmosphere</div>
+    <div class="tw-seg" data-tw="atmo">
+      <button data-val="none">None</button>
+      <button data-val="grid">Grid</button>
+      <button data-val="aurora">Aurora</button>
+    </div>
+  </div>
+</div>
+
 <script>
 
-/* ── PAGE ROUTER ── */
-function showPage(id) {
+/* ── HASH ROUTER ──────────────────────────────────────────────
+   Every view has its own URL hash (#home, #privacy, #blog, #post-N)
+   so the browser back/forward buttons work and links are shareable. */
+function setHash(h) {
+  if (location.hash === '#' + h) router();   // same hash: re-run manually
+  else location.hash = h;                    // new hash: fires 'hashchange'
+}
+function showPage(id) { setHash(id); }
+function goPost(i)    { setHash('post-' + i); }
+function scrollToBlog(){ setHash('blog'); }
+
+function activate(pageId) {
   document.querySelectorAll('.page').forEach(p => p.classList.remove('active'));
-  document.getElementById('page-' + id).classList.add('active');
-  window.scrollTo({ top: 0, behavior: 'smooth' });
+  const el = document.getElementById('page-' + pageId);
+  if (el) el.classList.add('active');
+  window.scrollTo({ top: 0 });
 }
-function scrollToBlog() {
-  showPage('home');
-  setTimeout(() => document.getElementById('blog').scrollIntoView({ behavior: 'smooth' }), 100);
+
+function router() {
+  const raw = location.hash.replace(/^#/, '');
+  if (raw === 'privacy') {
+    activate('privacy');
+  } else if (raw === 'blog') {
+    renderBlogIndex();
+    activate('blog');
+  } else if (raw.indexOf('post-') === 0) {
+    const i = parseInt(raw.slice(5), 10);
+    if (!isNaN(i) && POSTS[i]) { renderPost(i); activate('post'); }
+    else activate('home');
+  } else {
+    activate('home');
+  }
 }
+window.addEventListener('hashchange', router);
 
 /* ── PRIVACY ACCORDION ── */
 function togglePrivacy(hdr) {
@@ -718,33 +901,52 @@ const POSTS = [
   },
 ];
 
-function renderBlog() {
-  const grid = document.getElementById('blog-grid');
-  if (!grid) return;
-  POSTS.forEach((post, i) => {
-    const bodyId = 'body-' + i;
-    const card = document.createElement('article');
-    card.className = 'post-card';
-    card.innerHTML = `
+/* A blog preview card. Clicking it navigates to the full article page. */
+function blogCardHTML(post, i) {
+  return `
+    <article class="post-card" onclick="goPost(${i})">
       <div style="display:flex; align-items:center; justify-content:space-between;">
         <span class="post-tag">${post.tag}</span>
         <span class="post-date">${post.date}</span>
       </div>
       <div class="post-title">${post.title}</div>
       <div class="post-excerpt">${post.excerpt}</div>
-      <div class="post-body" id="${bodyId}">${post.body}</div>
-      <span class="read-more" id="lbl-${i}">Read more ↓</span>
-    `;
-    card.addEventListener('click', () => {
-      const body = document.getElementById(bodyId);
-      const lbl = document.getElementById('lbl-' + i);
-      const isOpen = body.classList.contains('visible');
-      body.classList.toggle('visible', !isOpen);
-      card.classList.toggle('open', !isOpen);
-      lbl.textContent = isOpen ? 'Read more ↓' : 'Close ↑';
-    });
-    grid.appendChild(card);
-  });
+      <span class="read-more">Read article →</span>
+    </article>`;
+}
+
+/* Home page: show the 3 most recent posts as previews. */
+function renderBlog() {
+  const grid = document.getElementById('blog-grid');
+  if (!grid) return;
+  grid.innerHTML = POSTS.slice(0, 3).map((p, i) => blogCardHTML(p, i)).join('');
+}
+
+/* Blog index page: show every post. */
+function renderBlogIndex() {
+  const grid = document.getElementById('blog-index-grid');
+  if (!grid) return;
+  grid.innerHTML = POSTS.map((p, i) => blogCardHTML(p, i)).join('');
+}
+
+/* Full article page. */
+function renderPost(i) {
+  const post = POSTS[i];
+  const root = document.getElementById('post-root');
+  if (!post || !root) return;
+  root.innerHTML = `
+    <span class="article-back" onclick="scrollToBlog()">← All articles</span>
+    <div class="article-meta">
+      <span class="post-tag">${post.tag}</span>
+      <span class="post-date">${post.date}</span>
+    </div>
+    <h1 class="article-title">${post.title}</h1>
+    <p class="article-lede">${post.excerpt}</p>
+    <div class="article-body">${post.body}</div>
+    <div style="margin-top:2.5rem; padding-top:1.5rem; border-top:0.5px solid var(--border);">
+      <span class="article-back" onclick="scrollToBlog()">← All articles</span>
+    </div>
+  `;
 }
 
 /* ══════════════ YOUR EXISTING INDUSTRY DATA & FUNCTIONS STAY HERE ══════════════ */
@@ -1169,6 +1371,110 @@ function initTabs() {
 
 initTabs();
 renderBlog();
+router();   // read the current URL hash and show the right page on load
+
+/* ── TWEAKS: expressive appearance controls ────────────────────────────
+   Each control rewrites a set of CSS variables, so one tap reshapes the
+   whole site rather than nudging a single property. Choices persist. */
+const TW_KEY = 'datalens-tweaks';
+
+const PALETTES = {
+  warmpaper: {
+    '--bg':'#fafaf8', '--bg-card':'#ffffff', '--bg-surface':'#f3f2ee', '--bg-accent':'#eceae3',
+    '--text-primary':'#1a1917', '--text-secondary':'#5f5c54', '--text-tertiary':'#8a8780',
+    '--border':'rgba(26,25,23,0.1)', '--border-strong':'rgba(26,25,23,0.2)',
+    '--accent':'#185FA5', '--accent-light':'#E6F1FB', '--accent-text':'#0C447C',
+    '--nav-bg':'rgba(250,250,248,0.92)',
+    '--grid-line':'rgba(26,25,23,0.07)', '--glow-1':'#9cc6f0', '--glow-2':'#d8c7a8', '--glow-3':'#bcd4ec'
+  },
+  coolslate: {
+    '--bg':'#f4f5f7', '--bg-card':'#ffffff', '--bg-surface':'#eceef1', '--bg-accent':'#e3e6ea',
+    '--text-primary':'#191c22', '--text-secondary':'#4d545f', '--text-tertiary':'#828893',
+    '--border':'rgba(20,25,40,0.1)', '--border-strong':'rgba(20,25,40,0.2)',
+    '--accent':'#4f46c4', '--accent-light':'#ecebfb', '--accent-text':'#322a8f',
+    '--nav-bg':'rgba(244,245,247,0.9)',
+    '--grid-line':'rgba(30,35,60,0.08)', '--glow-1':'#a9b6ee', '--glow-2':'#c7c2f5', '--glow-3':'#b3c0e8'
+  },
+  midnight: {
+    '--bg':'#15140f', '--bg-card':'#1e1c16', '--bg-surface':'#211f18', '--bg-accent':'#2a2820',
+    '--text-primary':'#f6f3ec', '--text-secondary':'#c4bdaf', '--text-tertiary':'#928b7d',
+    '--border':'rgba(244,241,234,0.12)', '--border-strong':'rgba(244,241,234,0.22)',
+    '--accent':'#e0a23b', '--accent-light':'#332a18', '--accent-text':'#e9b95f',
+    '--nav-bg':'rgba(21,20,15,0.9)',
+    '--grid-line':'rgba(224,162,59,0.1)', '--glow-1':'#e0a23b', '--glow-2':'#a8702a', '--glow-3':'#7a5a1f'
+  },
+  aurora: {
+    '--bg':'#080b14', '--bg-card':'#0f1320', '--bg-surface':'#131829', '--bg-accent':'#1a2138',
+    '--text-primary':'#eef2fb', '--text-secondary':'#c2cce2', '--text-tertiary':'#909cbb',
+    '--border':'rgba(130,170,255,0.14)', '--border-strong':'rgba(130,170,255,0.28)',
+    '--accent':'#3ee0d4', '--accent-light':'rgba(62,224,212,0.12)', '--accent-text':'#6ff0e6',
+    '--nav-bg':'rgba(8,11,20,0.82)',
+    '--grid-line':'rgba(120,160,255,0.13)', '--glow-1':'#1fb6c9', '--glow-2':'#6d5cff', '--glow-3':'#2f7bff'
+  }
+};
+
+const EDGES = {
+  sharp:   { '--radius-sm':'0px',  '--radius-md':'0px',  '--radius-lg':'0px'  },
+  soft:    { '--radius-sm':'8px',  '--radius-md':'12px', '--radius-lg':'16px' },
+  rounded: { '--radius-sm':'12px', '--radius-md':'18px', '--radius-lg':'24px' }
+};
+
+const TYPEFACES = {
+  editorial: { display:"'DM Serif Display', serif", body:"'DM Sans', sans-serif", font:null },
+  technical: { display:"'Space Grotesk', sans-serif", body:"'IBM Plex Sans', sans-serif",
+    font:'https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600&family=Space+Grotesk:wght@400;500;700&display=swap' },
+  refined:   { display:"'Newsreader', serif", body:"'Spline Sans', sans-serif",
+    font:'https://fonts.googleapis.com/css2?family=Newsreader:opsz,wght@6..72,400;6..72,500;6..72,600&family=Spline+Sans:wght@300;400;500;600&display=swap' },
+  geometric: { display:"'Sora', sans-serif", body:"'Manrope', sans-serif",
+    font:'https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700&family=Sora:wght@400;500;600;700&display=swap' }
+};
+
+function twEnsureFont(href) {
+  if (!href || document.querySelector('link[data-twfont="' + href + '"]')) return;
+  const l = document.createElement('link');
+  l.rel = 'stylesheet'; l.href = href; l.setAttribute('data-twfont', href);
+  document.head.appendChild(l);
+}
+
+function twApply(t) {
+  const root = document.documentElement;
+  const sets = [PALETTES[t.palette] || PALETTES.aurora, EDGES[t.edges] || EDGES.soft];
+  sets.forEach(set => { for (const k in set) root.style.setProperty(k, set[k]); });
+  const F = TYPEFACES[t.type] || TYPEFACES.geometric;
+  twEnsureFont(F.font);
+  root.style.setProperty('--ff-display', F.display);
+  root.style.setProperty('--ff-body', F.body);
+  root.setAttribute('data-atmo', t.atmo || 'none');
+}
+
+function twSyncUI(t) {
+  document.querySelectorAll('.tw-seg').forEach(seg => {
+    const key = seg.dataset.tw;
+    seg.querySelectorAll('button').forEach(b => b.classList.toggle('active', b.dataset.val === t[key]));
+  });
+}
+
+let twState = Object.assign(
+  { palette:'aurora', type:'geometric', edges:'rounded', atmo:'aurora' },
+  JSON.parse(localStorage.getItem(TW_KEY) || '{}')
+);
+twApply(twState);
+twSyncUI(twState);
+
+document.querySelectorAll('.tw-seg').forEach(seg => {
+  seg.addEventListener('click', e => {
+    const btn = e.target.closest('button[data-val]');
+    if (!btn) return;
+    twState[seg.dataset.tw] = btn.dataset.val;
+    localStorage.setItem(TW_KEY, JSON.stringify(twState));
+    twApply(twState);
+    twSyncUI(twState);
+  });
+});
+
+const twPanel = document.getElementById('twPanel');
+document.getElementById('twToggle').addEventListener('click', () => twPanel.classList.toggle('open'));
+document.getElementById('twClose').addEventListener('click', () => twPanel.classList.remove('open'));
 
 </script>
 </body>
