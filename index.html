@@ -1,3 +1,6 @@
+Datalens
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -78,6 +81,22 @@
       text-transform: uppercase;
       color: var(--text-tertiary);
     }
+    .nav-link-btn {
+      font-size: 13px;
+      font-weight: 500;
+      color: var(--text-secondary);
+      background: var(--bg-card);
+      border: 0.5px solid var(--border-strong);
+      padding: 7px 15px;
+      border-radius: 999px;
+      cursor: pointer;
+      font-family: var(--ff-body);
+      transition: all 0.15s ease;
+      white-space: nowrap;
+    }
+    .nav-link-btn:hover { color: var(--text-primary); background: var(--bg-surface); border-color: var(--accent); }
+    .nav-link-btn.active { color: #fff !important; background: var(--accent) !important; border-color: var(--accent) !important; }
+    .nav-links { display: flex; align-items: center; gap: 8px; justify-content: flex-end; }
 
     /* ── HERO ── */
     .hero {
@@ -380,6 +399,7 @@
     .privacy-block-body { display: none; padding: 0 1.5rem 1.25rem; border-top: 0.5px solid var(--border); }
     .privacy-block-body.visible { display: block; animation: fadeSlide 0.18s ease; }
     .privacy-block-body p { font-size: 14px; color: var(--text-secondary); line-height: 1.75; margin-top: 1rem; }
+    #page-about p, #page-about li { text-align: justify; text-wrap: pretty; }
     .privacy-block-body ul { padding-left: 1.2rem; margin-top: 0.75rem; }
     .privacy-block-body ul li { font-size: 14px; color: var(--text-secondary); line-height: 1.7; margin-bottom: 5px; }
     .privacy-block-body strong { color: var(--text-primary); font-weight: 500; }
@@ -439,6 +459,42 @@
     @keyframes blobDrift2 { 0%,100% { transform: translate(0,0) scale(1); } 50% { transform: translate(-7vw, 6vw) scale(1.08); } }
     @media (prefers-reduced-motion: reduce) { #atmo .blob { animation: none !important; } }
 
+    /* ── DATA GENERATOR ── */
+    .gen-section { max-width: 1100px; margin: 0 auto; padding: 0 2rem 4rem; }
+    .gen-intro { border-top: 0.5px solid var(--border); padding-top: 3rem; margin-bottom: 2rem; }
+    .gen-intro h2 { font-family: var(--ff-display); font-size: 32px; font-weight: 400; color: var(--text-primary); letter-spacing: -0.02em; margin-bottom: 8px; }
+    .gen-intro p { font-size: 14px; color: var(--text-secondary); max-width: 560px; line-height: 1.6; }
+    .gen-tabs { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 1.25rem; }
+    .gen-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; }
+    .gen-panel { background: var(--bg-card); border: 0.5px solid var(--border); border-radius: var(--radius-lg); padding: 1.25rem 1.4rem; }
+    .gen-panel h3 { font-size: 13px; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; color: var(--text-tertiary); margin-bottom: 1rem; }
+    .gen-row-count { display: flex; align-items: center; gap: 10px; margin-bottom: 1rem; }
+    .gen-row-count input[type="number"] { width: 110px; padding: 7px 10px; border-radius: var(--radius-sm); border: 0.5px solid var(--border-strong); background: var(--bg); color: var(--text-primary); font-family: var(--ff-body); font-size: 13px; }
+    .gen-row-count label { font-size: 13px; color: var(--text-secondary); }
+    .gen-col-list { display: flex; flex-direction: column; gap: 6px; margin-bottom: 0.85rem; max-height: 420px; overflow-y: auto; }
+    .gen-col-row { display: grid; grid-template-columns: 1.1fr 1fr 1.3fr auto; gap: 6px; align-items: center; padding: 6px; border: 0.5px solid var(--border); border-radius: var(--radius-sm); background: var(--bg); }
+    .gen-col-row input[type="text"], .gen-col-row select { width: 100%; padding: 6px 8px; border-radius: 6px; border: 0.5px solid var(--border-strong); background: var(--bg-card); color: var(--text-primary); font-family: var(--ff-body); font-size: 12.5px; }
+    .gen-col-row .gen-col-extra { font-size: 12px; color: var(--text-tertiary); }
+    .gen-col-remove { background: transparent; border: none; color: var(--text-tertiary); font-size: 16px; cursor: pointer; padding: 2px 6px; }
+    .gen-col-remove:hover { color: #b33; }
+    .gen-add-col { font-size: 12.5px; font-weight: 500; color: var(--accent); background: transparent; border: 0.5px dashed var(--border-strong); border-radius: var(--radius-sm); padding: 8px; cursor: pointer; width: 100%; text-align: center; font-family: var(--ff-body); }
+    .gen-add-col:hover { background: var(--bg-surface); }
+    .gen-generate-btn { width: 100%; margin-top: 1rem; padding: 11px; border-radius: 999px; border: none; background: var(--accent); color: #fff; font-family: var(--ff-body); font-size: 13.5px; font-weight: 500; cursor: pointer; transition: opacity .15s; }
+    .gen-generate-btn:hover { opacity: 0.88; }
+    .gen-preview-hdr { display: flex; align-items: center; justify-content: space-between; margin-bottom: 0.85rem; flex-wrap: wrap; gap: 8px; }
+    .gen-download-row { display: flex; gap: 6px; flex-wrap: wrap; }
+    .gen-dl-btn { font-size: 12px; font-weight: 500; color: var(--text-secondary); background: var(--bg); border: 0.5px solid var(--border-strong); padding: 6px 12px; border-radius: 999px; cursor: pointer; font-family: var(--ff-body); transition: all .15s; }
+    .gen-dl-btn:hover { border-color: var(--accent); color: var(--accent); }
+    .gen-dl-btn:disabled { opacity: 0.4; cursor: not-allowed; }
+    .gen-table-wrap { overflow: auto; border: 0.5px solid var(--border); border-radius: var(--radius-md); max-height: 480px; }
+    .gen-table { border-collapse: collapse; width: 100%; font-size: 12px; }
+    .gen-table th { position: sticky; top: 0; background: var(--bg-surface); text-align: left; padding: 8px 10px; font-weight: 500; color: var(--text-primary); border-bottom: 0.5px solid var(--border); white-space: nowrap; }
+    .gen-table td { padding: 7px 10px; border-bottom: 0.5px solid var(--border); color: var(--text-secondary); white-space: nowrap; }
+    .gen-table tr:last-child td { border-bottom: none; }
+    .gen-empty-state { padding: 2.5rem 1rem; text-align: center; color: var(--text-tertiary); font-size: 13px; }
+    .gen-note { font-size: 11.5px; color: var(--text-tertiary); margin-top: 8px; }
+    @media (max-width: 860px) { .gen-grid { grid-template-columns: 1fr; } }
+
     /* ── RESPONSIVE ── */
     @media (max-width: 600px) {
       .hero { padding: 3rem 1.25rem 2rem; }
@@ -446,6 +502,8 @@
       .panel-header { flex-direction: column; gap: 0.75rem; padding: 1.25rem; }
       .methods-section, .tools-section, .datasets-section, .careers-section { padding: 1.25rem; }
       footer { padding: 1.5rem 1.25rem 2.5rem; }
+      nav { flex-wrap: wrap; height: auto; padding: 10px 1.25rem; gap: 8px; }
+      .nav-links { width: 100%; justify-content: flex-start; }
     }
   </style>
 </head>
@@ -456,9 +514,11 @@
 
 <nav>
   <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer;">Data<span>Lens</span></div>
-  <div style="display:flex; align-items:center; gap:1rem;">
-    <span class="nav-tag">Industry Analysis Guide</span>
-    <button onclick="scrollToBlog()" style="font-size:13px; font-weight:500; color:var(--accent); background:transparent; border:0.5px solid var(--accent); padding:5px 14px; border-radius:999px; cursor:pointer; font-family:var(--ff-body);">Blog</button>
+  <div class="nav-links">
+    <button class="nav-link-btn" data-page="home" onclick="showPage('home')">Learning</button>
+    <button class="nav-link-btn" data-page="generator" onclick="showPage('generator')">Generate Data</button>
+    <button class="nav-link-btn" data-page="blog" onclick="showPage('blog')">Blogs</button>
+    <button class="nav-link-btn" data-page="about" onclick="showPage('about')">About Us</button>
   </div>
 </nav>
 
@@ -473,22 +533,9 @@
   <div id="panel-root"></div>
 </section>
 
-<!-- BLOG SECTION -->
-<section id="blog" style="max-width:860px; margin:0 auto; padding:0 2rem 4rem;">
-  <div style="border-top:0.5px solid var(--border); padding-top:3rem; margin-bottom:2rem; display:flex; align-items:flex-end; justify-content:space-between; gap:1rem; flex-wrap:wrap;">
-    <div>
-      <p style="font-size:11px; font-weight:500; letter-spacing:0.09em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:8px;">From the blog</p>
-      <h2 style="font-family:var(--ff-display); font-size:32px; font-weight:400; color:var(--text-primary); letter-spacing:-0.02em;">Latest articles</h2>
-    </div>
-    <span onclick="scrollToBlog()" style="font-size:13px; font-weight:500; color:var(--accent); cursor:pointer; white-space:nowrap;">View all articles →</span>
-  </div>
-  <div id="blog-grid" style="display:grid; grid-template-columns:repeat(auto-fit, minmax(240px, 1fr)); gap:12px;"></div>
-</section>
-
 <footer>
   <div class="footer-logo">Data<span>Lens</span></div>
   <div style="display:flex; gap:1.5rem; align-items:center;">
-    <span style="font-size:12px; color:var(--text-secondary); cursor:pointer;" onclick="scrollToBlog()">Blog</span>
     <span style="font-size:12px; color:var(--text-secondary); cursor:pointer;" onclick="showPage('privacy')">Privacy Policy</span>
     <a href="https://www.linkedin.com/in/gyansharma695/" target="_blank" style="font-size:12px; color:var(--text-secondary); text-decoration:none;">LinkedIn</a>
   </div>
@@ -496,6 +543,130 @@
 </footer>
 
 </div><!-- end page-home -->
+
+<!-- ══════════════════ GENERATE DATA PAGE ══════════════════ -->
+<div id="page-generator" class="page">
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer;">Data<span>Lens</span></div>
+  <div class="nav-links">
+    <button class="nav-link-btn" data-page="home" onclick="showPage('home')">Learning</button>
+    <button class="nav-link-btn" data-page="generator" onclick="showPage('generator')">Generate Data</button>
+    <button class="nav-link-btn" data-page="blog" onclick="showPage('blog')">Blogs</button>
+    <button class="nav-link-btn" data-page="about" onclick="showPage('about')">About Us</button>
+  </div>
+</nav>
+
+<!-- DATA GENERATOR SECTION -->
+<section id="generator" class="gen-section" style="padding-top:2.5rem;">
+  <div class="gen-intro" style="border-top:none; padding-top:0;">
+    <p style="font-size:11px; font-weight:500; letter-spacing:0.09em; text-transform:uppercase; color:var(--text-tertiary); margin-bottom:8px;">Try it</p>
+    <h2>Generate sample data</h2>
+    <p>Pick an industry, tweak the columns, choose how many rows, and export realistic sample data — right in your browser. Nothing is uploaded anywhere.</p>
+  </div>
+
+  <div class="gen-tabs" id="gen-tabs"></div>
+
+  <div class="gen-grid">
+    <div class="gen-panel">
+      <h3>Columns</h3>
+      <div class="gen-col-list" id="gen-col-list"></div>
+      <button class="gen-add-col" id="gen-add-col">+ Add column</button>
+      <div class="gen-row-count" style="margin-top:1.1rem;">
+        <label for="gen-rows-input">Rows</label>
+        <input type="number" id="gen-rows-input" min="1" max="100000" value="1000" />
+        <span class="gen-note" style="margin:0;">max 100,000</span>
+      </div>
+      <button class="gen-generate-btn" id="gen-generate-btn">Generate data</button>
+      <div class="gen-note" id="gen-status"></div>
+    </div>
+
+    <div class="gen-panel">
+      <div class="gen-preview-hdr">
+        <h3 style="margin-bottom:0;">Preview</h3>
+        <div class="gen-download-row">
+          <button class="gen-dl-btn" id="gen-dl-csv" disabled>Download CSV</button>
+          <button class="gen-dl-btn" id="gen-dl-json" disabled>Download JSON</button>
+          <button class="gen-dl-btn" id="gen-dl-xlsx" disabled>Download XLSX</button>
+        </div>
+      </div>
+      <div class="gen-table-wrap" id="gen-table-wrap">
+        <div class="gen-empty-state">Configure your columns and click "Generate data" to see a preview here.</div>
+      </div>
+      <div class="gen-note" id="gen-preview-note"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-logo" onclick="showPage('home')" style="cursor:pointer;">Data<span>Lens</span></div>
+  <div style="display:flex; gap:1.5rem;">
+    <span style="font-size:12px; color:var(--text-secondary); cursor:pointer;" onclick="showPage('privacy')">Privacy Policy</span>
+    <a href="https://www.linkedin.com/in/gyansharma695/" target="_blank" style="font-size:12px; color:var(--text-secondary); text-decoration:none;">LinkedIn</a>
+  </div>
+  <div class="footer-note">Built by Gyanendu Sharma</div>
+</footer>
+
+</div><!-- end page-generator -->
+
+<!-- ══════════════════ ABOUT US PAGE ══════════════════ -->
+<div id="page-about" class="page">
+
+<nav>
+  <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer;">Data<span>Lens</span></div>
+  <div class="nav-links">
+    <button class="nav-link-btn" data-page="home" onclick="showPage('home')">Learning</button>
+    <button class="nav-link-btn" data-page="generator" onclick="showPage('generator')">Generate Data</button>
+    <button class="nav-link-btn" data-page="blog" onclick="showPage('blog')">Blogs</button>
+    <button class="nav-link-btn" data-page="about" onclick="showPage('about')">About Us</button>
+  </div>
+</nav>
+
+<div class="privacy-hero">
+  <p style="font-size:11px;font-weight:500;letter-spacing:0.09em;text-transform:uppercase;color:var(--accent);margin-bottom:10px;">About</p>
+  <h1>Why DataLens exists</h1>
+  <p>A practical guide to how data is analyzed across industries — and a hands-on way to try it yourself.</p>
+</div>
+
+<div class="privacy-content">
+
+  <div class="privacy-block">
+    <div style="padding:1.5rem;">
+      <h3 style="font-size:14px; font-weight:500; color:var(--text-primary); margin-bottom:8px;">The problem</h3>
+      <p style="font-size:14px; color:var(--text-secondary); line-height:1.75;">"Data analysis" means something different in finance than it does in healthcare or manufacturing — different tools, regulations, vocabulary, and risks. Most resources either stay too generic to be useful, or go so deep into one field that outsiders can't follow. DataLens exists to close that gap: one place to see, side by side, how analysis actually works across very different industries.</p>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div style="padding:1.5rem;">
+      <h3 style="font-size:14px; font-weight:500; color:var(--text-primary); margin-bottom:8px;">What DataLens does</h3>
+      <ul style="padding-left:1.2rem; margin-top:0.5rem;">
+        <li style="font-size:14px; color:var(--text-secondary); line-height:1.7; margin-bottom:6px;">Breaks down the analytical methods, tools, datasets, and career paths specific to eight industries.</li>
+        <li style="font-size:14px; color:var(--text-secondary); line-height:1.7; margin-bottom:6px;">Lets you generate realistic, industry-shaped sample data instantly, so you can practice or prototype without waiting on real data access.</li>
+        <li style="font-size:14px; color:var(--text-secondary); line-height:1.7;">Publishes practical, no-fluff articles on the tools and techniques analysts actually use day to day.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="privacy-block">
+    <div style="padding:1.5rem;">
+      <h3 style="font-size:14px; font-weight:500; color:var(--text-primary); margin-bottom:8px;">Our vision</h3>
+      <p style="font-size:14px; color:var(--text-secondary); line-height:1.75;">Anyone — students, career switchers, analysts leveling up — should be able to explore an industry's data landscape and immediately get hands-on with data shaped like the real thing, without setup, signup, or waiting on someone else's dataset.</p>
+    </div>
+  </div>
+
+</div>
+
+<footer>
+  <div class="footer-logo" onclick="showPage('home')" style="cursor:pointer;">Data<span>Lens</span></div>
+  <div style="display:flex; gap:1.5rem;">
+    <span style="font-size:12px; color:var(--text-secondary); cursor:pointer;" onclick="showPage('privacy')">Privacy Policy</span>
+    <a href="https://www.linkedin.com/in/gyansharma695/" target="_blank" style="font-size:12px; color:var(--text-secondary); text-decoration:none;">LinkedIn</a>
+  </div>
+  <div class="footer-note">Built by Gyanendu Sharma</div>
+</footer>
+
+</div><!-- end page-about -->
 
 <!-- ══════════════════ PRIVACY PAGE ══════════════════ -->
 <div id="page-privacy" class="page">
@@ -628,9 +799,11 @@
 
 <nav>
   <div class="nav-logo" onclick="showPage('home')" style="cursor:pointer;">Data<span>Lens</span></div>
-  <div style="display:flex; align-items:center; gap:1rem;">
-    <span class="nav-tag">Industry Analysis Guide</span>
-    <button onclick="showPage('home')" style="font-size:13px; font-weight:500; color:var(--accent); background:transparent; border:0.5px solid var(--accent); padding:5px 14px; border-radius:999px; cursor:pointer; font-family:var(--ff-body);">← Home</button>
+  <div class="nav-links">
+    <button class="nav-link-btn" data-page="home" onclick="showPage('home')">Learning</button>
+    <button class="nav-link-btn" data-page="generator" onclick="showPage('generator')">Generate Data</button>
+    <button class="nav-link-btn" data-page="blog" onclick="showPage('blog')">Blogs</button>
+    <button class="nav-link-btn" data-page="about" onclick="showPage('about')">About Us</button>
   </div>
 </nav>
 
@@ -745,6 +918,20 @@ function activate(pageId) {
   const el = document.getElementById('page-' + pageId);
   if (el) el.classList.add('active');
   window.scrollTo({ top: 0 });
+  const navActiveId = pageId === 'post' ? 'blog' : pageId;
+  document.querySelectorAll('.nav-link-btn').forEach(b => {
+    const isActive = b.dataset.page === navActiveId;
+    b.classList.toggle('active', isActive);
+    if (isActive) {
+      b.style.setProperty('background', 'var(--accent)', 'important');
+      b.style.setProperty('color', '#fff', 'important');
+      b.style.setProperty('border-color', 'var(--accent)', 'important');
+    } else {
+      b.style.removeProperty('background');
+      b.style.removeProperty('color');
+      b.style.removeProperty('border-color');
+    }
+  });
 }
 
 function router() {
@@ -754,6 +941,10 @@ function router() {
   } else if (raw === 'blog') {
     renderBlogIndex();
     activate('blog');
+  } else if (raw === 'generator') {
+    activate('generator');
+  } else if (raw === 'about') {
+    activate('about');
   } else if (raw.indexOf('post-') === 0) {
     const i = parseInt(raw.slice(5), 10);
     if (!isNaN(i) && POSTS[i]) { renderPost(i); activate('post'); }
@@ -1472,6 +1663,375 @@ document.querySelectorAll('.tw-seg').forEach(seg => {
 const twPanel = document.getElementById('twPanel');
 document.getElementById('twToggle').addEventListener('click', () => twPanel.classList.toggle('open'));
 document.getElementById('twClose').addEventListener('click', () => twPanel.classList.remove('open'));
+
+/* ══════════════ RANDOM DATA GENERATOR ══════════════ */
+
+const GEN_FIRST_NAMES = ["James","Maria","David","Sarah","Michael","Priya","Wei","Fatima","John","Emma","Carlos","Aisha","Daniel","Yuki","Robert","Olga","Ahmed","Grace","Lucas","Nina","Thomas","Chen","Sofia","Kwame","Anna","Ravi","Ingrid","Marco","Layla","Ethan"];
+const GEN_LAST_NAMES = ["Smith","Johnson","Garcia","Chen","Patel","Kim","Muller","Rossi","Nguyen","Brown","Silva","Kowalski","Andersson","Okafor","Tanaka","Ivanov","Martin","Khan","Dubois","Costa","Novak","Suzuki","Haddad","Larsen","Reyes","Bakker","Kovac","Osei","Petrova","Lindqvist"];
+const GEN_COMPANIES = ["Northwind Traders","Vertex Industries","Bluepeak Group","Cascade Analytics","Ironclad Logistics","Solara Energy","Meridian Health","Foundry Retail","Nimbus Cloud Co.","Redwood Manufacturing","Halcyon Partners","Orbital Systems","Anchor Financial","Beacon Supply","Crestline Labs"];
+const GEN_CITIES = ["Chicago","Austin","Toronto","Berlin","Mumbai","Sao Paulo","Singapore","Lagos","Warsaw","Seoul","Madrid","Nairobi","Manila","Melbourne","Dublin","Osaka","Vancouver","Cairo","Stockholm","Jakarta"];
+const GEN_DOMAINS = ["example.com","mailbox.co","inboxpro.net","workmail.io","postbox.org"];
+const GEN_STREET_WORDS = ["Maple","Cedar","Oak","Sunset","Harbor","Willow","Ridge","Elm","Franklin","Highland"];
+const GEN_SNIPPETS = ["Reviewed and processed on schedule.", "Flagged for manual follow-up.", "Matches expected pattern.", "No anomalies detected.", "Escalated to next tier.", "Pending additional review.", "Within normal operating range.", "Requires data correction."];
+
+const GEN_TYPES = [
+  { value:'id', label:'ID' },
+  { value:'uuid', label:'UUID' },
+  { value:'integer', label:'Integer' },
+  { value:'decimal', label:'Decimal' },
+  { value:'currency', label:'Currency amount' },
+  { value:'percentage', label:'Percentage' },
+  { value:'date', label:'Date' },
+  { value:'boolean', label:'Boolean' },
+  { value:'category', label:'Category' },
+  { value:'name', label:'Full name' },
+  { value:'company', label:'Company' },
+  { value:'email', label:'Email' },
+  { value:'phone', label:'Phone' },
+  { value:'city', label:'City' },
+  { value:'address', label:'Street address' },
+  { value:'text', label:'Short text' },
+];
+
+function genRandInt(min, max) { return Math.floor(Math.random() * (max - min + 1)) + min; }
+function genRandFloat(min, max, decimals) {
+  const d = decimals == null ? 2 : decimals;
+  return +(Math.random() * (max - min) + min).toFixed(d);
+}
+function genPick(arr) { return arr[genRandInt(0, arr.length - 1)]; }
+function genUuid() {
+  return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, c => {
+    const r = Math.random() * 16 | 0;
+    const v = c === 'x' ? r : (r & 0x3 | 0x8);
+    return v.toString(16);
+  });
+}
+function genRandomDate(daysBack) {
+  const back = daysBack || 1095;
+  const d = new Date();
+  d.setDate(d.getDate() - genRandInt(0, back));
+  return d.toISOString().slice(0, 10);
+}
+
+function genCellValue(col, rowIndex) {
+  switch (col.type) {
+    case 'id': return (col.prefix || 'ID-') + String(rowIndex + 1).padStart(6, '0');
+    case 'uuid': return genUuid();
+    case 'integer': return genRandInt(col.min != null ? col.min : 1, col.max != null ? col.max : 1000);
+    case 'decimal': return genRandFloat(col.min != null ? col.min : 0, col.max != null ? col.max : 1000, col.decimals != null ? col.decimals : 2);
+    case 'currency': return genRandFloat(col.min != null ? col.min : 0, col.max != null ? col.max : 1000, 2);
+    case 'percentage': return genRandFloat(0, 100, 1);
+    case 'date': return genRandomDate(col.daysBack);
+    case 'boolean': return genPick(['true', 'false']);
+    case 'category': {
+      const opts = (col.options || 'Option A,Option B').split(',').map(s => s.trim()).filter(Boolean);
+      return genPick(opts.length ? opts : ['Option A']);
+    }
+    case 'name': return genPick(GEN_FIRST_NAMES) + ' ' + genPick(GEN_LAST_NAMES);
+    case 'company': return genPick(GEN_COMPANIES);
+    case 'email': {
+      const f = genPick(GEN_FIRST_NAMES).toLowerCase();
+      const l = genPick(GEN_LAST_NAMES).toLowerCase();
+      return f + '.' + l + genRandInt(1, 99) + '@' + genPick(GEN_DOMAINS);
+    }
+    case 'phone': return '+1-' + genRandInt(200, 999) + '-' + genRandInt(200, 999) + '-' + String(genRandInt(0, 9999)).padStart(4, '0');
+    case 'city': return genPick(GEN_CITIES);
+    case 'address': return genRandInt(100, 9999) + ' ' + genPick(GEN_STREET_WORDS) + ' St';
+    case 'text': return genPick(GEN_SNIPPETS);
+    default: return '';
+  }
+}
+
+const GEN_PRESETS = {
+  finance: [
+    { key:'transaction_id', type:'id', prefix:'TXN-' },
+    { key:'account_id', type:'id', prefix:'ACC-' },
+    { key:'customer_name', type:'name' },
+    { key:'transaction_date', type:'date' },
+    { key:'amount', type:'currency', min:5, max:15000 },
+    { key:'currency', type:'category', options:'USD,EUR,GBP,JPY' },
+    { key:'merchant_category', type:'category', options:'Groceries,Travel,Electronics,Dining,Utilities,Entertainment' },
+    { key:'transaction_type', type:'category', options:'Debit,Credit,Transfer,Withdrawal' },
+    { key:'is_fraud_flag', type:'boolean' },
+  ],
+  healthcare: [
+    { key:'patient_id', type:'id', prefix:'PT-' },
+    { key:'patient_name', type:'name' },
+    { key:'admission_date', type:'date' },
+    { key:'diagnosis_code', type:'category', options:'E11.9,I10,J45.909,M54.5,K21.9,F32.9' },
+    { key:'department', type:'category', options:'Cardiology,Oncology,Pediatrics,Emergency,Orthopedics,Neurology' },
+    { key:'length_of_stay_days', type:'integer', min:1, max:21 },
+    { key:'readmitted_30d', type:'boolean' },
+    { key:'total_charge', type:'currency', min:200, max:85000 },
+  ],
+  energy: [
+    { key:'meter_id', type:'id', prefix:'MTR-' },
+    { key:'reading_date', type:'date' },
+    { key:'region', type:'category', options:'Northeast,Midwest,South,West,Pacific' },
+    { key:'energy_source', type:'category', options:'Solar,Wind,Natural Gas,Coal,Hydro,Nuclear' },
+    { key:'consumption_kwh', type:'decimal', min:5, max:5000 },
+    { key:'peak_demand_kw', type:'decimal', min:1, max:800 },
+    { key:'outage_flag', type:'boolean' },
+  ],
+  retail: [
+    { key:'order_id', type:'id', prefix:'ORD-' },
+    { key:'customer_name', type:'name' },
+    { key:'order_date', type:'date' },
+    { key:'product_category', type:'category', options:'Apparel,Electronics,Home,Beauty,Grocery,Toys' },
+    { key:'sku', type:'id', prefix:'SKU-' },
+    { key:'quantity', type:'integer', min:1, max:12 },
+    { key:'unit_price', type:'currency', min:3, max:600 },
+    { key:'discount_pct', type:'percentage' },
+    { key:'payment_method', type:'category', options:'Credit Card,Debit Card,PayPal,Gift Card,Cash' },
+  ],
+  manufacturing: [
+    { key:'work_order_id', type:'id', prefix:'WO-' },
+    { key:'machine_id', type:'id', prefix:'MCH-' },
+    { key:'production_date', type:'date' },
+    { key:'product_line', type:'category', options:'Assembly A,Assembly B,Stamping,Welding,Packaging' },
+    { key:'units_produced', type:'integer', min:50, max:5000 },
+    { key:'defect_count', type:'integer', min:0, max:50 },
+    { key:'downtime_minutes', type:'integer', min:0, max:240 },
+    { key:'shift', type:'category', options:'Day,Evening,Night' },
+  ],
+  marketing: [
+    { key:'campaign_id', type:'id', prefix:'CMP-' },
+    { key:'channel', type:'category', options:'Meta Ads,Google Ads,Email,TikTok,Organic Social,Affiliate' },
+    { key:'date', type:'date' },
+    { key:'impressions', type:'integer', min:100, max:500000 },
+    { key:'clicks', type:'integer', min:0, max:20000 },
+    { key:'conversions', type:'integer', min:0, max:1500 },
+    { key:'spend', type:'currency', min:10, max:20000 },
+    { key:'audience_segment', type:'category', options:'New Visitors,Returning Customers,Lookalike,Retargeting' },
+  ],
+  logistics: [
+    { key:'shipment_id', type:'id', prefix:'SHP-' },
+    { key:'origin_city', type:'city' },
+    { key:'destination_city', type:'city' },
+    { key:'carrier', type:'category', options:'FedEx,UPS,DHL,Maersk,XPO Logistics' },
+    { key:'ship_date', type:'date' },
+    { key:'weight_kg', type:'decimal', min:0.5, max:2000 },
+    { key:'status', type:'category', options:'Delivered,In Transit,Delayed,Returned' },
+    { key:'freight_cost', type:'currency', min:20, max:15000 },
+  ],
+  hr: [
+    { key:'employee_id', type:'id', prefix:'EMP-' },
+    { key:'employee_name', type:'name' },
+    { key:'department', type:'category', options:'Engineering,Sales,Marketing,Finance,HR,Operations,Support' },
+    { key:'hire_date', type:'date' },
+    { key:'job_level', type:'category', options:'IC1,IC2,IC3,IC4,M1,M2,M3' },
+    { key:'annual_salary', type:'currency', min:45000, max:220000 },
+    { key:'performance_rating', type:'category', options:'Exceeds,Meets,Below,Not Rated' },
+    { key:'attrition_risk', type:'category', options:'Low,Medium,High' },
+  ],
+  generic: [
+    { key:'id', type:'id', prefix:'ROW-' },
+    { key:'name', type:'name' },
+    { key:'created_at', type:'date' },
+  ],
+};
+
+const GEN_INDUSTRY_TABS = INDUSTRIES.map(i => ({ id: i.id, label: i.label, color: i.color }))
+  .concat([{ id:'generic', label:'Generic / Custom', color:'#5f5c54' }]);
+
+let genState = {
+  industry: 'finance',
+  columns: JSON.parse(JSON.stringify(GEN_PRESETS.finance)),
+  rows: 1000,
+  data: null,
+  cols: null,
+};
+
+function genRenderTabs() {
+  const wrap = document.getElementById('gen-tabs');
+  if (!wrap) return;
+  wrap.innerHTML = '';
+  GEN_INDUSTRY_TABS.forEach(t => {
+    const btn = document.createElement('button');
+    btn.className = 'tab-btn' + (t.id === genState.industry ? ' active' : '');
+    btn.innerHTML = `<span class="tab-dot" style="background:${t.color};opacity:1;"></span>${t.label}`;
+    btn.addEventListener('click', () => {
+      genState.industry = t.id;
+      genState.columns = JSON.parse(JSON.stringify(GEN_PRESETS[t.id] || []));
+      genState.data = null;
+      genState.cols = null;
+      document.getElementById('gen-status').textContent = '';
+      ['gen-dl-csv','gen-dl-json','gen-dl-xlsx'].forEach(id => document.getElementById(id).disabled = true);
+      genRenderTabs();
+      genRenderColumns();
+      genRenderPreview();
+    });
+    wrap.appendChild(btn);
+  });
+}
+
+function genRenderColumns() {
+  const list = document.getElementById('gen-col-list');
+  if (!list) return;
+  list.innerHTML = '';
+  if (!genState.columns.length) {
+    const empty = document.createElement('div');
+    empty.className = 'gen-note';
+    empty.textContent = 'No columns yet — add one below.';
+    list.appendChild(empty);
+  }
+  genState.columns.forEach((col, idx) => {
+    const row = document.createElement('div');
+    row.className = 'gen-col-row';
+    const needsOptions = col.type === 'category';
+    const needsRange = col.type === 'integer' || col.type === 'decimal' || col.type === 'currency';
+    let extraHTML = '';
+    if (needsOptions) {
+      extraHTML = `<input type="text" data-role="options" placeholder="Comma-separated values" value="${(col.options||'').replace(/"/g,'&quot;')}" />`;
+    } else if (needsRange) {
+      extraHTML = `<div style="display:flex; gap:4px;"><input type="text" data-role="min" placeholder="min" value="${col.min != null ? col.min : ''}" style="width:50%;" /><input type="text" data-role="max" placeholder="max" value="${col.max != null ? col.max : ''}" style="width:50%;" /></div>`;
+    } else {
+      extraHTML = `<span class="gen-col-extra">—</span>`;
+    }
+    row.innerHTML = `
+      <input type="text" data-role="name" value="${col.key}" />
+      <select data-role="type">${GEN_TYPES.map(t => `<option value="${t.value}" ${t.value === col.type ? 'selected' : ''}>${t.label}</option>`).join('')}</select>
+      <div data-role="extra">${extraHTML}</div>
+      <button class="gen-col-remove" data-role="remove" title="Remove column">×</button>
+    `;
+    row.querySelector('[data-role="name"]').addEventListener('input', e => { genState.columns[idx].key = e.target.value; });
+    row.querySelector('[data-role="type"]').addEventListener('change', e => {
+      genState.columns[idx].type = e.target.value;
+      delete genState.columns[idx].options;
+      delete genState.columns[idx].min;
+      delete genState.columns[idx].max;
+      genRenderColumns();
+    });
+    row.querySelector('[data-role="remove"]').addEventListener('click', () => {
+      genState.columns.splice(idx, 1);
+      genRenderColumns();
+    });
+    const optIn = row.querySelector('[data-role="options"]');
+    if (optIn) optIn.addEventListener('input', e => { genState.columns[idx].options = e.target.value; });
+    const minIn = row.querySelector('[data-role="min"]');
+    const maxIn = row.querySelector('[data-role="max"]');
+    if (minIn) minIn.addEventListener('input', e => { genState.columns[idx].min = e.target.value === '' ? undefined : parseFloat(e.target.value); });
+    if (maxIn) maxIn.addEventListener('input', e => { genState.columns[idx].max = e.target.value === '' ? undefined : parseFloat(e.target.value); });
+    list.appendChild(row);
+  });
+}
+
+function genAddColumn() {
+  genState.columns.push({ key: 'column_' + (genState.columns.length + 1), type: 'text' });
+  genRenderColumns();
+}
+
+function genGenerateData() {
+  const rowsInput = document.getElementById('gen-rows-input');
+  let rows = parseInt(rowsInput.value, 10);
+  if (isNaN(rows) || rows < 1) rows = 1;
+  if (rows > 100000) rows = 100000;
+  rowsInput.value = rows;
+  genState.rows = rows;
+
+  const cols = genState.columns.filter(c => c.key && c.key.trim());
+  if (!cols.length) {
+    document.getElementById('gen-status').textContent = 'Add at least one column first.';
+    return;
+  }
+  document.getElementById('gen-status').textContent = 'Generating…';
+  setTimeout(() => {
+    const data = new Array(rows);
+    for (let r = 0; r < rows; r++) {
+      const record = {};
+      cols.forEach(col => { record[col.key] = genCellValue(col, r); });
+      data[r] = record;
+    }
+    genState.data = data;
+    genState.cols = cols;
+    document.getElementById('gen-status').textContent = `Generated ${rows.toLocaleString()} rows × ${cols.length} columns.`;
+    genRenderPreview();
+    ['gen-dl-csv','gen-dl-json','gen-dl-xlsx'].forEach(id => document.getElementById(id).disabled = false);
+  }, 10);
+}
+
+function genRenderPreview() {
+  const wrap = document.getElementById('gen-table-wrap');
+  const note = document.getElementById('gen-preview-note');
+  if (!genState.data || !genState.data.length) {
+    wrap.innerHTML = '<div class="gen-empty-state">Configure your columns and click "Generate data" to see a preview here.</div>';
+    note.textContent = '';
+    return;
+  }
+  const cols = genState.cols;
+  const previewRows = genState.data.slice(0, 50);
+  let html = '<table class="gen-table"><thead><tr>' + cols.map(c => `<th>${c.key}</th>`).join('') + '</tr></thead><tbody>';
+  previewRows.forEach(row => {
+    html += '<tr>' + cols.map(c => `<td>${row[c.key]}</td>`).join('') + '</tr>';
+  });
+  html += '</tbody></table>';
+  wrap.innerHTML = html;
+  note.textContent = `Showing first ${previewRows.length} of ${genState.data.length.toLocaleString()} rows.`;
+}
+
+function genToCSV() {
+  const cols = genState.cols;
+  const esc = v => {
+    const s = String(v);
+    return /[",\n]/.test(s) ? '"' + s.replace(/"/g, '""') + '"' : s;
+  };
+  let csv = cols.map(c => esc(c.key)).join(',') + '\n';
+  genState.data.forEach(row => {
+    csv += cols.map(c => esc(row[c.key])).join(',') + '\n';
+  });
+  return csv;
+}
+
+function genDownloadBlob(content, filename, mime) {
+  const blob = new Blob([content], { type: mime });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a');
+  a.href = url; a.download = filename;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a);
+  URL.revokeObjectURL(url);
+}
+
+function genDownloadCSV() {
+  if (!genState.data) return;
+  genDownloadBlob(genToCSV(), `datalens-${genState.industry}-data.csv`, 'text/csv;charset=utf-8;');
+}
+function genDownloadJSON() {
+  if (!genState.data) return;
+  genDownloadBlob(JSON.stringify(genState.data, null, 2), `datalens-${genState.industry}-data.json`, 'application/json;charset=utf-8;');
+}
+function genLoadXLSXLib(cb) {
+  if (window.XLSX) { cb(); return; }
+  const existing = document.querySelector('script[data-xlsx-lib]');
+  if (existing) { existing.addEventListener('load', cb); return; }
+  const s = document.createElement('script');
+  s.src = 'https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js';
+  s.setAttribute('data-xlsx-lib', '1');
+  s.onload = cb;
+  document.head.appendChild(s);
+}
+function genDownloadXLSX() {
+  if (!genState.data) return;
+  document.getElementById('gen-status').textContent = 'Preparing XLSX…';
+  genLoadXLSXLib(() => {
+    const ws = XLSX.utils.json_to_sheet(genState.data);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, 'Data');
+    XLSX.writeFile(wb, `datalens-${genState.industry}-data.xlsx`);
+    document.getElementById('gen-status').textContent = `Generated ${genState.data.length.toLocaleString()} rows × ${genState.cols.length} columns.`;
+  });
+}
+
+function initGenerator() {
+  genRenderTabs();
+  genRenderColumns();
+  genRenderPreview();
+  document.getElementById('gen-add-col').addEventListener('click', genAddColumn);
+  document.getElementById('gen-generate-btn').addEventListener('click', genGenerateData);
+  document.getElementById('gen-dl-csv').addEventListener('click', genDownloadCSV);
+  document.getElementById('gen-dl-json').addEventListener('click', genDownloadJSON);
+  document.getElementById('gen-dl-xlsx').addEventListener('click', genDownloadXLSX);
+}
+initGenerator();
 
 </script>
 </body>
